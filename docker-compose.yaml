@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 9009 --reload
+    ports:
+      - "9009:9009"
+    volumes:
+      - .:/code
+
+  postgres:
+    image: postgres:10.1-alpine
+    environment:
+      POSTGRES_USER: match
+      POSTGRES_PASSWORD: match
+      POSTGRES_DB: match
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+
+
+

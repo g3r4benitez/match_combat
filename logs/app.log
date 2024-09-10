@@ -1,0 +1,508 @@
+2024-09-05 08:51:46,180 - challenge_notifications - INFO - Application Started
+2024-09-05 08:51:51,554 - challenge_notifications - INFO - Application Started
+2024-09-05 08:52:46,816 - challenge_notifications - INFO - Application Started
+2024-09-05 08:52:50,165 - challenge_notifications - INFO - Application Started
+2024-09-05 08:52:55,832 - challenge_notifications - INFO - Application Started
+2024-09-05 08:52:59,444 - challenge_notifications - INFO - user.name
+2024-09-05 08:52:59,444 - challenge_notifications - INFO - user.name
+2024-09-05 08:53:00,885 - challenge_notifications - INFO - user.name
+2024-09-05 08:53:00,885 - challenge_notifications - INFO - user.name
+2024-09-05 08:53:07,716 - challenge_notifications - INFO - Application Started
+2024-09-05 08:53:11,042 - challenge_notifications - INFO - Juan Carlos
+2024-09-05 08:53:11,042 - challenge_notifications - INFO - Maria Clara
+2024-09-05 08:53:21,932 - challenge_notifications - INFO - Application Started
+2024-09-05 08:54:05,308 - challenge_notifications - INFO - Application Started
+2024-09-05 08:54:09,092 - challenge_notifications - DEBUG - Juan Carlos
+2024-09-05 08:54:09,092 - challenge_notifications - DEBUG - Maria Clara
+2024-09-05 08:54:28,048 - challenge_notifications - INFO - Application Started
+2024-09-05 08:54:32,389 - challenge_notifications - DEBUG - Juan Carlos
+2024-09-05 08:54:32,389 - challenge_notifications - DEBUG - juancarlos@gilasw.com
+2024-09-05 08:54:32,389 - challenge_notifications - DEBUG - Maria Clara
+2024-09-05 08:54:32,389 - challenge_notifications - DEBUG - maria.clara@gilasw.com
+2024-09-05 08:55:03,410 - challenge_notifications - INFO - Application Started
+2024-09-05 08:55:03,561 - challenge_notifications - DEBUG - Juan Carlos
+2024-09-05 08:55:03,561 - challenge_notifications - DEBUG - juancarlos@gilasw.com
+2024-09-05 08:55:03,561 - challenge_notifications - DEBUG - Maria Clara
+2024-09-05 08:55:03,562 - challenge_notifications - DEBUG - maria.clara@gilasw.com
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - Juan Carlos
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - juancarlos@gilasw.com
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - Maria Clara
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - maria.clara@gilasw.com
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - Test create User
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - Test User
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - User One
+2024-09-05 08:55:27,969 - challenge_notifications - DEBUG - one@example.com
+2024-09-05 08:55:27,970 - challenge_notifications - DEBUG - User Two
+2024-09-05 08:55:27,970 - challenge_notifications - DEBUG - two@example.com
+2024-09-05 08:56:07,230 - challenge_notifications - INFO - Application Started
+2024-09-05 08:56:09,191 - challenge_notifications - INFO - Application Started
+2024-09-05 08:56:09,342 - challenge_notifications - DEBUG - Juan Carlos
+2024-09-05 08:56:09,342 - challenge_notifications - DEBUG - juancarlos@gilasw.com
+2024-09-05 08:56:09,342 - challenge_notifications - DEBUG - Maria Clara
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - maria.clara@gilasw.com
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - Test create User
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - Test User
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - User One
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - one@example.com
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - User Two
+2024-09-05 08:56:09,343 - challenge_notifications - DEBUG - two@example.com
+2024-09-05 08:56:16,291 - challenge_notifications - DEBUG - Juan Carlos
+2024-09-05 08:56:16,291 - challenge_notifications - DEBUG - juancarlos@gilasw.com
+2024-09-05 08:56:16,291 - challenge_notifications - DEBUG - Maria Clara
+2024-09-05 08:56:16,291 - challenge_notifications - DEBUG - maria.clara@gilasw.com
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - Test create User
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - Test User
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - User One
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - one@example.com
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - User Two
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - two@example.com
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - Test create User
+2024-09-05 08:56:16,292 - challenge_notifications - DEBUG - test@example.com
+2024-09-05 08:56:16,292 - challenge_notifications - ERROR - Error during send notification: 'NoneType' object has no attribute 'split'
+2024-09-05 08:56:42,579 - challenge_notifications - INFO - Application Started
+2024-09-05 08:56:58,290 - challenge_notifications - INFO - Application Started
+2024-09-05 08:58:47,674 - challenge_notifications - INFO - Application Started
+2024-09-05 08:59:42,551 - challenge_notifications - INFO - Application Started
+2024-09-05 09:00:28,179 - challenge_notifications - INFO - Application Started
+2024-09-05 09:00:54,015 - challenge_notifications - INFO - Application Started
+2024-09-05 09:01:27,801 - challenge_notifications - INFO - Application Started
+2024-09-05 09:01:55,244 - challenge_notifications - INFO - Application Started
+2024-09-05 09:02:34,111 - challenge_notifications - INFO - Application Started
+2024-09-05 09:03:13,895 - challenge_notifications - INFO - Application Started
+2024-09-05 09:03:35,841 - challenge_notifications - INFO - send notification to user Juan Carlos
+2024-09-05 09:03:35,854 - challenge_notifications - INFO - send notification to user Juan Carlos
+2024-09-05 09:03:35,871 - challenge_notifications - INFO - sending notification to user:Juan Carlos using channel: email, message: hola mundo 
+2024-09-05 09:03:35,871 - challenge_notifications - INFO - sending notification to user:Juan Carlos using channel: sms, message: hola mundo 
+2024-09-05 09:04:02,082 - challenge_notifications - INFO - Application Started
+2024-09-05 09:04:25,169 - challenge_notifications - INFO - Application Started
+2024-09-05 09:04:38,395 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:Juan Carlos using channel: email, message: hola mundo 
+2024-09-05 09:04:38,395 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:Juan Carlos using channel: sms, message: hola mundo 
+2024-09-05 09:05:31,780 - challenge_notifications - INFO - Application Started
+2024-09-05 09:05:36,661 - challenge_notifications - INFO - Application Started
+2024-09-05 10:40:47,435 - challenge_notifications - INFO - Application Started
+2024-09-05 10:41:36,960 - challenge_notifications - INFO - Application Started
+2024-09-05 10:43:42,385 - challenge_notifications - INFO - Application Started
+2024-09-05 10:44:37,783 - challenge_notifications - INFO - Application Started
+2024-09-05 10:47:07,480 - challenge_notifications - INFO - Application Started
+2024-09-05 10:49:12,826 - challenge_notifications - INFO - Application Started
+2024-09-05 10:49:57,008 - challenge_notifications - INFO - Application Started
+2024-09-05 10:53:19,691 - challenge_notifications - INFO - Application Started
+2024-09-05 11:00:19,288 - challenge_notifications - INFO - Application Started
+2024-09-05 11:00:37,626 - challenge_notifications - INFO - Application Started
+2024-09-05 11:01:08,818 - challenge_notifications - INFO - Application Started
+2024-09-05 11:01:34,584 - challenge_notifications - INFO - Application Started
+2024-09-05 11:03:33,415 - challenge_notifications - INFO - Application Started
+2024-09-05 11:04:33,482 - challenge_notifications - INFO - Application Started
+2024-09-05 11:04:55,069 - challenge_notifications - INFO - Application Started
+2024-09-05 11:05:41,999 - challenge_notifications - INFO - Application Started
+2024-09-05 11:06:12,445 - challenge_notifications - INFO - Application Started
+2024-09-05 11:06:19,873 - challenge_notifications - INFO - Application Started
+2024-09-05 11:06:25,425 - challenge_notifications - INFO - Application Started
+2024-09-05 11:06:33,323 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:Juan Carlos using channel: email, message: hola mundo 
+2024-09-05 11:06:33,323 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:Juan Carlos using channel: sms, message: hola mundo 
+2024-09-05 11:07:57,627 - challenge_notifications - INFO - Application Started
+2024-09-05 11:08:00,030 - challenge_notifications - INFO - Application Started
+2024-09-05 11:08:44,933 - challenge_notifications - INFO - Application Started
+2024-09-05 11:08:51,719 - challenge_notifications - INFO - Application Started
+2024-09-05 16:00:02,679 - challenge_notifications - INFO - Application Started
+2024-09-05 16:00:04,142 - challenge_notifications - INFO - Application Started
+2024-09-05 16:01:36,654 - challenge_notifications - INFO - Application Started
+2024-09-05 16:02:21,943 - challenge_notifications - INFO - Application Started
+2024-09-05 16:08:49,417 - challenge_notifications - INFO - Application Started
+2024-09-05 16:10:15,787 - challenge_notifications - INFO - Application Started
+2024-09-05 16:10:42,524 - challenge_notifications - INFO - Application Started
+2024-09-05 16:15:16,970 - challenge_notifications - INFO - Application Started
+2024-09-05 16:15:41,788 - challenge_notifications - INFO - Application Started
+2024-09-05 16:16:02,791 - challenge_notifications - INFO - Application Started
+2024-09-05 16:26:17,248 - challenge_notifications - INFO - Application Started
+2024-09-05 16:26:42,708 - challenge_notifications - INFO - Application Started
+2024-09-05 16:29:55,132 - challenge_notifications - INFO - Application Started
+2024-09-05 16:30:22,546 - challenge_notifications - INFO - Application Started
+2024-09-05 16:35:41,271 - challenge_notifications - INFO - Application Started
+2024-09-05 16:51:46,252 - challenge_notifications - INFO - Application Started
+2024-09-05 16:51:50,882 - challenge_notifications - INFO - Application Started
+2024-09-05 16:53:31,087 - challenge_notifications - INFO - Application Started
+2024-09-05 17:19:27,914 - challenge_notifications - INFO - Application Started
+2024-09-05 17:19:46,096 - challenge_notifications - INFO - Application Started
+2024-09-05 17:21:51,226 - challenge_notifications - INFO - Application Started
+2024-09-05 17:22:13,250 - challenge_notifications - INFO - Application Started
+2024-09-05 17:22:40,987 - challenge_notifications - INFO - Application Started
+2024-09-05 17:22:52,182 - challenge_notifications - INFO - Application Started
+2024-09-05 17:23:39,006 - challenge_notifications - INFO - Application Started
+2024-09-05 17:32:00,757 - challenge_notifications - INFO - Application Started
+2024-09-05 17:34:19,543 - challenge_notifications - INFO - Application Started
+2024-09-05 17:35:00,395 - challenge_notifications - INFO - Application Started
+2024-09-05 17:35:04,571 - challenge_notifications - INFO - Application Started
+2024-09-05 17:35:08,634 - challenge_notifications - INFO - Application Started
+2024-09-05 17:36:28,118 - challenge_notifications - INFO - Application Started
+2024-09-05 17:36:56,766 - challenge_notifications - INFO - Application Started
+2024-09-05 17:37:02,566 - challenge_notifications - INFO - Application Started
+2024-09-05 17:37:34,021 - challenge_notifications - INFO - Application Started
+2024-09-05 17:38:31,342 - challenge_notifications - INFO - Application Started
+2024-09-05 17:38:51,450 - challenge_notifications - INFO - Application Started
+2024-09-05 17:39:49,934 - challenge_notifications - INFO - Application Started
+2024-09-05 17:42:03,357 - challenge_notifications - INFO - Application Started
+2024-09-05 17:43:42,394 - challenge_notifications - INFO - Application Started
+2024-09-05 17:44:23,556 - challenge_notifications - INFO - Application Started
+2024-09-05 17:44:32,073 - challenge_notifications - INFO - Application Started
+2024-09-05 17:45:15,657 - challenge_notifications - INFO - Application Started
+2024-09-05 17:45:22,253 - challenge_notifications - INFO - Application Started
+2024-09-05 17:45:23,453 - challenge_notifications - INFO - Application Started
+2024-09-05 17:45:36,283 - challenge_notifications - INFO - Application Started
+2024-09-05 17:45:47,138 - challenge_notifications - INFO - Application Started
+2024-09-05 17:47:44,415 - challenge_notifications - INFO - Application Started
+2024-09-05 17:53:24,541 - challenge_notifications - INFO - Application Started
+2024-09-05 17:54:20,625 - challenge_notifications - INFO - Application Started
+2024-09-05 17:54:42,969 - challenge_notifications - INFO - Application Started
+2024-09-05 17:55:46,212 - challenge_notifications - INFO - Application Started
+2024-09-05 17:55:54,329 - challenge_notifications - INFO - Application Started
+2024-09-05 17:56:21,433 - challenge_notifications - INFO - Application Started
+2024-09-05 17:59:17,069 - challenge_notifications - INFO - Application Started
+2024-09-05 18:00:45,545 - challenge_notifications - INFO - Application Started
+2024-09-05 18:14:13,549 - challenge_notifications - INFO - Application Started
+2024-09-05 18:16:43,932 - challenge_notifications - INFO - Application Started
+2024-09-05 18:17:09,779 - challenge_notifications - INFO - Application Started
+2024-09-05 18:17:32,230 - challenge_notifications - INFO - Application Started
+2024-09-05 18:18:19,293 - challenge_notifications - INFO - Application Started
+2024-09-05 18:21:00,513 - challenge_notifications - INFO - Application Started
+2024-09-05 18:24:31,407 - challenge_notifications - INFO - Application Started
+2024-09-05 18:25:01,949 - challenge_notifications - INFO - Application Started
+2024-09-05 18:25:37,051 - challenge_notifications - INFO - Application Started
+2024-09-05 18:26:27,727 - challenge_notifications - INFO - Application Started
+2024-09-05 18:26:32,434 - challenge_notifications - INFO - Application Started
+2024-09-05 18:26:40,568 - challenge_notifications - INFO - Application Started
+2024-09-05 18:29:26,056 - challenge_notifications - INFO - Application Started
+2024-09-05 18:30:21,045 - challenge_notifications - INFO - Application Started
+2024-09-05 18:30:25,098 - challenge_notifications - INFO - Application Started
+2024-09-05 18:30:33,424 - challenge_notifications - INFO - Application Started
+2024-09-05 20:20:24,463 - challenge_notifications - INFO - Application Started
+2024-09-05 20:21:06,350 - challenge_notifications - INFO - Application Started
+2024-09-05 20:21:21,118 - challenge_notifications - INFO - Application Started
+2024-09-05 20:21:55,453 - challenge_notifications - INFO - Application Started
+2024-09-05 20:21:55,469 - challenge_notifications - INFO - [{'id': 1, 'name': 'sms'}, {'id': 2, 'name': 'email'}, {'id': 3, 'name': 'push'}]
+2024-09-05 20:22:55,467 - challenge_notifications - INFO - Application Started
+2024-09-05 20:22:55,482 - challenge_notifications - INFO - [{'id': 1, 'name': 'sms'}, {'id': 2, 'name': 'email'}, {'id': 3, 'name': 'push'}]
+2024-09-05 20:23:46,232 - challenge_notifications - INFO - Application Started
+2024-09-05 20:23:46,261 - challenge_notifications - INFO - None
+2024-09-05 20:23:46,262 - challenge_notifications - INFO - None
+2024-09-05 20:23:46,262 - challenge_notifications - INFO - None
+2024-09-05 20:24:09,665 - challenge_notifications - INFO - Application Started
+2024-09-05 20:24:09,693 - challenge_notifications - INFO - None
+2024-09-05 20:24:09,694 - challenge_notifications - INFO - None
+2024-09-05 20:24:09,694 - challenge_notifications - INFO - None
+2024-09-05 20:24:32,193 - challenge_notifications - INFO - Application Started
+2024-09-05 20:24:32,221 - challenge_notifications - INFO - None
+2024-09-05 20:24:32,222 - challenge_notifications - INFO - None
+2024-09-05 20:24:32,223 - challenge_notifications - INFO - None
+2024-09-05 20:24:39,682 - challenge_notifications - INFO - Application Started
+2024-09-05 20:24:39,711 - challenge_notifications - INFO - None
+2024-09-05 20:24:39,719 - challenge_notifications - INFO - Creating channel: sms
+2024-09-05 20:24:39,720 - challenge_notifications - INFO - None
+2024-09-05 20:24:39,722 - challenge_notifications - INFO - Creating channel: email
+2024-09-05 20:24:39,722 - challenge_notifications - INFO - None
+2024-09-05 20:24:39,724 - challenge_notifications - INFO - Creating channel: push
+2024-09-05 20:25:16,474 - challenge_notifications - INFO - Application Started
+2024-09-05 20:25:16,503 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:25:16,503 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:25:16,504 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:25:44,621 - challenge_notifications - INFO - Application Started
+2024-09-05 20:25:44,650 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:25:44,651 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:25:44,651 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:25:57,116 - challenge_notifications - INFO - Application Started
+2024-09-05 20:25:57,144 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:25:57,145 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:25:57,146 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:26:17,058 - challenge_notifications - INFO - Application Started
+2024-09-05 20:26:17,087 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:26:17,088 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:26:17,089 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:26:48,187 - challenge_notifications - INFO - Application Started
+2024-09-05 20:26:48,216 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:26:48,216 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:26:48,217 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:35:50,565 - challenge_notifications - INFO - Application Started
+2024-09-05 20:35:50,596 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:35:50,597 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:35:50,598 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:35:50,607 - challenge_notifications - INFO - Creating user: Juan Carlos
+2024-09-05 20:35:50,608 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 1
+2024-09-05 20:35:50,609 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 2
+2024-09-05 20:35:50,610 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 3
+2024-09-05 20:35:50,615 - challenge_notifications - INFO - Creating user-channel: user_id:1, subscription_id: 1
+2024-09-05 20:35:50,618 - challenge_notifications - INFO - Creating user-channel: user_id:1, subscription_id: 2
+2024-09-05 20:35:50,625 - challenge_notifications - INFO - Creating user: Maria Clara
+2024-09-05 20:35:50,626 - challenge_notifications - INFO - Creating user-subscription: user_id:2, subscription_id: 1
+2024-09-05 20:35:50,626 - challenge_notifications - INFO - Creating user-subscription: user_id:2, subscription_id: 2
+2024-09-05 20:35:50,630 - challenge_notifications - INFO - Creating user-channel: user_id:2, subscription_id: 2
+2024-09-05 20:35:50,633 - challenge_notifications - INFO - Creating user-channel: user_id:2, subscription_id: 3
+2024-09-05 20:39:49,215 - challenge_notifications - INFO - Application Started
+2024-09-05 20:39:49,243 - challenge_notifications - INFO - None
+2024-09-05 20:39:49,248 - challenge_notifications - INFO - Creating channel: sms
+2024-09-05 20:39:49,248 - challenge_notifications - INFO - None
+2024-09-05 20:39:49,251 - challenge_notifications - INFO - Creating channel: email
+2024-09-05 20:39:49,252 - challenge_notifications - INFO - None
+2024-09-05 20:39:49,254 - challenge_notifications - INFO - Creating channel: push
+2024-09-05 20:39:49,264 - challenge_notifications - INFO - Creating user: Juan Carlos
+2024-09-05 20:39:49,266 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 1
+2024-09-05 20:39:49,267 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 2
+2024-09-05 20:39:49,267 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 3
+2024-09-05 20:39:49,271 - challenge_notifications - INFO - Creating user-channel: user_id:1, subscription_id: 1
+2024-09-05 20:39:49,275 - challenge_notifications - INFO - Creating user-channel: user_id:1, subscription_id: 2
+2024-09-05 20:39:49,281 - challenge_notifications - INFO - Creating user: Maria Clara
+2024-09-05 20:39:49,282 - challenge_notifications - INFO - Creating user-subscription: user_id:2, subscription_id: 1
+2024-09-05 20:39:49,282 - challenge_notifications - INFO - Creating user-subscription: user_id:2, subscription_id: 2
+2024-09-05 20:39:49,286 - challenge_notifications - INFO - Creating user-channel: user_id:2, subscription_id: 2
+2024-09-05 20:39:49,288 - challenge_notifications - INFO - Creating user-channel: user_id:2, subscription_id: 3
+2024-09-05 20:41:28,338 - challenge_notifications - INFO - Application Started
+2024-09-05 20:41:28,368 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:41:28,369 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:41:28,369 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:41:28,370 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:41:51,178 - challenge_notifications - INFO - Application Started
+2024-09-05 20:41:51,207 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:41:51,208 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:41:51,208 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:41:51,208 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:41:51,220 - challenge_notifications - INFO - Creating subscription: sport
+2024-09-05 20:41:51,222 - challenge_notifications - INFO - Creating subscription: finance
+2024-09-05 20:41:51,225 - challenge_notifications - INFO - Creating subscription: films
+2024-09-05 20:43:26,968 - challenge_notifications - INFO - Application Started
+2024-09-05 20:43:26,996 - challenge_notifications - INFO - None
+2024-09-05 20:43:27,004 - challenge_notifications - INFO - Creating channel: sms
+2024-09-05 20:43:27,004 - challenge_notifications - INFO - None
+2024-09-05 20:43:27,007 - challenge_notifications - INFO - Creating channel: email
+2024-09-05 20:43:27,007 - challenge_notifications - INFO - None
+2024-09-05 20:43:27,010 - challenge_notifications - INFO - Creating channel: push
+2024-09-05 20:43:27,010 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:43:27,017 - challenge_notifications - INFO - Creating subscription: sport
+2024-09-05 20:43:27,020 - challenge_notifications - INFO - Creating subscription: finance
+2024-09-05 20:43:27,023 - challenge_notifications - INFO - Creating subscription: films
+2024-09-05 20:43:27,031 - challenge_notifications - INFO - Creating user: Juan Carlos
+2024-09-05 20:43:27,036 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 1
+2024-09-05 20:43:27,039 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 2
+2024-09-05 20:43:27,041 - challenge_notifications - INFO - Creating user-subscription: user_id:1, subscription_id: 3
+2024-09-05 20:43:27,045 - challenge_notifications - INFO - Creating user-channel: user_id:1, subscription_id: 1
+2024-09-05 20:43:27,048 - challenge_notifications - INFO - Creating user-channel: user_id:1, subscription_id: 2
+2024-09-05 20:43:27,054 - challenge_notifications - INFO - Creating user: Maria Clara
+2024-09-05 20:43:27,057 - challenge_notifications - INFO - Creating user-subscription: user_id:2, subscription_id: 1
+2024-09-05 20:43:27,060 - challenge_notifications - INFO - Creating user-subscription: user_id:2, subscription_id: 2
+2024-09-05 20:43:27,064 - challenge_notifications - INFO - Creating user-channel: user_id:2, subscription_id: 2
+2024-09-05 20:43:27,067 - challenge_notifications - INFO - Creating user-channel: user_id:2, subscription_id: 3
+2024-09-05 20:47:36,035 - challenge_notifications - INFO - Application Started
+2024-09-05 20:47:36,065 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:47:36,065 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:47:36,066 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:47:36,066 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:48:13,716 - challenge_notifications - ERROR - Error during send notification: Parent instance <User at 0x7a34ade53d80> is not bound to a Session; lazy load operation of attribute 'subscriptions' cannot proceed (Background on this error at: https://sqlalche.me/e/20/bhk3)
+2024-09-05 20:49:43,617 - challenge_notifications - INFO - Application Started
+2024-09-05 20:49:43,649 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-05 20:49:43,650 - challenge_notifications - INFO - id=2 name='email'
+2024-09-05 20:49:43,651 - challenge_notifications - INFO - id=3 name='push'
+2024-09-05 20:49:43,651 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:55:13,738 - challenge_notifications - INFO - Application Started
+2024-09-05 20:55:13,768 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-05 20:55:13,768 - challenge_notifications - INFO - id=2 name='email'
+2024-09-05 20:55:13,769 - challenge_notifications - INFO - id=3 name='push'
+2024-09-05 20:55:13,769 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:55:24,220 - challenge_notifications - INFO - [Subscription(name='sport', id=1), Subscription(name='finance', id=2), Subscription(name='films', id=3)]
+2024-09-05 20:55:24,221 - challenge_notifications - INFO - [Subscription(name='sport', id=1), Subscription(name='finance', id=2)]
+2024-09-05 20:57:38,564 - challenge_notifications - INFO - Application Started
+2024-09-05 20:57:38,593 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 20:57:38,594 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 20:57:38,594 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 20:57:38,594 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 20:57:46,847 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-05 20:57:46,848 - challenge_notifications - INFO - [1, 2]
+2024-09-05 21:00:54,997 - challenge_notifications - INFO - Application Started
+2024-09-05 21:00:55,026 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-05 21:00:55,026 - challenge_notifications - INFO - id=2 name='email'
+2024-09-05 21:00:55,027 - challenge_notifications - INFO - id=3 name='push'
+2024-09-05 21:00:55,027 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:01:16,147 - challenge_notifications - INFO - Application Started
+2024-09-05 21:01:16,176 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:01:16,177 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:01:16,177 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:01:16,177 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:01:23,712 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-05 21:01:23,713 - challenge_notifications - INFO - [1, 2]
+2024-09-05 21:02:05,075 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-05 21:02:05,076 - challenge_notifications - INFO - [1, 2]
+2024-09-05 21:03:07,212 - challenge_notifications - INFO - Application Started
+2024-09-05 21:03:07,241 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-05 21:03:07,242 - challenge_notifications - INFO - id=2 name='email'
+2024-09-05 21:03:07,243 - challenge_notifications - INFO - id=3 name='push'
+2024-09-05 21:03:07,243 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:04:50,667 - challenge_notifications - INFO - Application Started
+2024-09-05 21:04:50,697 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:04:50,698 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:04:50,698 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:04:50,698 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:06:45,906 - challenge_notifications - INFO - Application Started
+2024-09-05 21:06:45,937 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:06:45,938 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:06:45,938 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:06:45,939 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:06:55,409 - challenge_notifications - INFO - Application Started
+2024-09-05 21:06:55,438 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:06:55,439 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:06:55,440 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:06:55,440 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:13:07,516 - challenge_notifications - INFO - Application Started
+2024-09-05 21:13:07,545 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:13:07,546 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:13:07,546 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:13:07,546 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:13:09,684 - challenge_notifications - INFO - Application Started
+2024-09-05 21:13:09,714 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:13:09,715 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:13:09,715 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:13:09,715 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:13:58,157 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-05 21:13:58,157 - challenge_notifications - ERROR - Error during send notification: (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for integer: "films"
+LINE 3: WHERE subscription.id = 'films'
+                                ^
+
+[SQL: SELECT subscription.id AS subscription_id, subscription.name AS subscription_name 
+FROM subscription 
+WHERE subscription.id = %(pk_1)s]
+[parameters: {'pk_1': 'films'}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2024-09-05 21:15:11,174 - challenge_notifications - INFO - Application Started
+2024-09-05 21:15:11,203 - challenge_notifications - INFO - name='sms' id=1
+2024-09-05 21:15:11,204 - challenge_notifications - INFO - name='email' id=2
+2024-09-05 21:15:11,204 - challenge_notifications - INFO - name='push' id=3
+2024-09-05 21:15:11,204 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 21:15:16,019 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-05 21:15:16,036 - challenge_notifications - INFO - [1, 2]
+2024-09-05 23:31:40,151 - challenge_notifications - INFO - Application Started
+2024-09-05 23:31:40,241 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-05 23:31:40,244 - challenge_notifications - INFO - id=2 name='email'
+2024-09-05 23:31:40,246 - challenge_notifications - INFO - id=3 name='push'
+2024-09-05 23:31:40,246 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-05 23:32:43,963 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-05 23:32:44,018 - challenge_notifications - INFO - [1, 2]
+2024-09-05 23:32:44,070 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-05 23:32:44,075 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-05 23:41:39,296 - challenge_notifications - INFO - Application Started
+2024-09-05 23:41:39,386 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-05 23:41:39,388 - challenge_notifications - INFO - id=2 name='email'
+2024-09-05 23:41:39,391 - challenge_notifications - INFO - id=3 name='push'
+2024-09-05 23:41:39,391 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-06 08:36:40,158 - challenge_notifications - INFO - Application Started
+2024-09-06 08:37:10,932 - challenge_notifications - INFO - Application Started
+2024-09-06 08:37:10,970 - challenge_notifications - INFO - name='sms' id=1
+2024-09-06 08:37:10,971 - challenge_notifications - INFO - name='email' id=2
+2024-09-06 08:37:10,972 - challenge_notifications - INFO - name='push' id=3
+2024-09-06 08:37:10,972 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-06 08:54:53,015 - challenge_notifications - INFO - Application Started
+2024-09-06 08:54:53,045 - challenge_notifications - INFO - name='sms' id=1
+2024-09-06 08:54:53,045 - challenge_notifications - INFO - name='email' id=2
+2024-09-06 08:54:53,046 - challenge_notifications - INFO - name='push' id=3
+2024-09-06 08:54:53,046 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-06 08:55:35,372 - challenge_notifications - INFO - Application Started
+2024-09-06 08:55:35,399 - challenge_notifications - INFO - id=1 name='sms'
+2024-09-06 08:55:35,400 - challenge_notifications - INFO - id=2 name='email'
+2024-09-06 08:55:35,401 - challenge_notifications - INFO - id=3 name='push'
+2024-09-06 08:55:35,401 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-06 08:56:23,628 - challenge_notifications - INFO - Application Started
+2024-09-06 08:57:05,137 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-06 08:57:05,153 - challenge_notifications - INFO - [1, 2]
+2024-09-06 08:57:05,171 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 08:57:05,173 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 08:57:23,760 - challenge_notifications - INFO - Application Started
+2024-09-06 08:57:28,650 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-06 08:57:28,666 - challenge_notifications - INFO - [1, 2]
+2024-09-06 08:57:28,667 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 08:57:28,667 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 08:58:51,368 - challenge_notifications - INFO - Application Started
+2024-09-06 08:58:57,400 - challenge_notifications - INFO - receiving notification to send, category: films, message: hola mundo
+2024-09-06 08:58:57,404 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-06 08:58:57,421 - challenge_notifications - INFO - [1, 2]
+2024-09-06 08:58:57,422 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 08:58:57,422 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 08:59:19,677 - challenge_notifications - INFO - Application Started
+2024-09-06 08:59:25,563 - challenge_notifications - INFO - receiving notification to send, category: 'films', message: 'hola mundo'
+2024-09-06 08:59:25,568 - challenge_notifications - INFO - [1, 2, 3]
+2024-09-06 08:59:25,585 - challenge_notifications - INFO - [1, 2]
+2024-09-06 08:59:25,585 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 08:59:25,585 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 09:02:03,769 - challenge_notifications - INFO - Application Started
+2024-09-06 09:02:14,040 - challenge_notifications - INFO - receiving notification to send, category: 'films', message: 'hola mundo'
+2024-09-06 09:02:14,060 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 09:02:14,060 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 09:02:50,515 - challenge_notifications - INFO - Application Started
+2024-09-06 09:03:30,330 - challenge_notifications - INFO - Application Started
+2024-09-06 09:04:27,417 - challenge_notifications - INFO - Application Started
+2024-09-06 09:05:13,233 - challenge_notifications - INFO - Application Started
+2024-09-06 09:05:22,028 - challenge_notifications - INFO - Application Started
+2024-09-06 09:05:39,371 - challenge_notifications - INFO - Application Started
+2024-09-06 09:05:43,462 - challenge_notifications - INFO - Application Started
+2024-09-06 09:08:15,346 - challenge_notifications - INFO - Application Started
+2024-09-06 09:08:21,035 - challenge_notifications - INFO - Application Started
+2024-09-06 09:08:31,452 - challenge_notifications - INFO - Application Started
+2024-09-06 09:08:43,341 - challenge_notifications - INFO - Application Started
+2024-09-06 09:10:08,702 - challenge_notifications - INFO - Application Started
+2024-09-06 09:10:54,068 - challenge_notifications - INFO - Application Started
+2024-09-06 09:11:40,926 - challenge_notifications - INFO - Application Started
+2024-09-06 09:12:30,977 - challenge_notifications - INFO - Application Started
+2024-09-06 09:12:43,296 - challenge_notifications - INFO - Application Started
+2024-09-06 09:17:39,476 - challenge_notifications - INFO - Application Started
+2024-09-06 09:18:47,472 - challenge_notifications - INFO - Application Started
+2024-09-06 09:20:23,346 - challenge_notifications - INFO - Application Started
+2024-09-06 09:21:07,185 - challenge_notifications - INFO - Application Started
+2024-09-06 09:29:55,262 - challenge_notifications - INFO - Application Started
+2024-09-06 09:30:21,270 - challenge_notifications - INFO - Application Started
+2024-09-06 09:33:15,420 - challenge_notifications - INFO - Application Started
+2024-09-06 09:34:24,092 - challenge_notifications - INFO - Application Started
+2024-09-06 09:34:36,417 - challenge_notifications - INFO - Application Started
+2024-09-06 10:42:14,332 - challenge_notifications - INFO - receiving notification to send, category: 'filma', message: 'hola mundo'
+2024-09-06 10:44:38,386 - challenge_notifications - INFO - Application Started
+2024-09-06 10:44:45,049 - challenge_notifications - INFO - receiving notification to send, category: 'filma', message: 'hola mundo'
+2024-09-06 10:44:58,229 - challenge_notifications - INFO - receiving notification to send, category: 'films', message: 'hola mundo'
+2024-09-06 10:44:58,250 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 10:44:58,250 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 10:46:06,671 - challenge_notifications - INFO - Application Started
+2024-09-06 10:46:13,394 - challenge_notifications - INFO - receiving notification to send, category: 'filma', message: 'hola mundo'
+2024-09-06 10:46:13,396 - challenge_notifications - ERROR - Subscription 'filma' doesn't exist
+2024-09-06 10:47:26,087 - challenge_notifications - INFO - receiving notification to send, category: 'films', message: 'hola mundo'
+2024-09-06 10:47:26,106 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'hola mundo' 
+2024-09-06 10:47:26,106 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'hola mundo' 
+2024-09-06 10:52:08,948 - challenge_notifications - INFO - Application Started
+2024-09-06 10:52:08,979 - challenge_notifications - INFO - name='sms' id=1
+2024-09-06 10:52:08,980 - challenge_notifications - INFO - name='email' id=2
+2024-09-06 10:52:08,980 - challenge_notifications - INFO - name='push' id=3
+2024-09-06 10:52:08,980 - challenge_notifications - INFO - [{'id': 1, 'name': 'sport'}, {'id': 2, 'name': 'finance'}, {'id': 3, 'name': 'films'}]
+2024-09-06 10:52:23,907 - challenge_notifications - INFO - Application Started
+2024-09-06 10:52:28,928 - challenge_notifications - INFO - receiving notification to send, category: 'films', message: 'Dec 24, world premiere of the movie Avatar 3'
+2024-09-06 10:52:28,948 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'email', message: 'Dec 24, world premiere of the movie Avatar 3' 
+2024-09-06 10:52:28,949 - challenge_notifications - INFO - CELERY WORKER: sending notification to user:'Juan Carlos' using channel: 'sms', message: 'Dec 24, world premiere of the movie Avatar 3' 
+2024-09-06 10:52:35,429 - challenge_notifications - INFO - receiving notification to send, category: 'filma', message: 'Dec 24, world premiere of the movie Avatar 3'
+2024-09-06 10:52:35,430 - challenge_notifications - ERROR - Subscription 'filma' doesn't exist
+2024-09-10 09:55:30,752 - challenge_notifications - INFO - Application Started
+2024-09-10 09:58:17,766 - challenge_notifications - INFO - Application Started
+2024-09-10 09:58:17,770 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:01:08,405 - challenge_notifications - INFO - Application Started
+2024-09-10 10:01:08,409 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:03:26,196 - challenge_notifications - INFO - Application Started
+2024-09-10 10:03:26,201 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:03:47,207 - challenge_notifications - INFO - Application Started
+2024-09-10 10:03:47,212 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:05:08,472 - challenge_notifications - INFO - Application Started
+2024-09-10 10:05:08,477 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:05:20,172 - challenge_notifications - INFO - Application Started
+2024-09-10 10:05:20,176 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:06:27,678 - challenge_notifications - INFO - Application Started
+2024-09-10 10:06:27,683 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:11:57,095 - challenge_notifications - INFO - Application Started
+2024-09-10 10:11:57,100 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:14:07,586 - challenge_notifications - INFO - Application Started
+2024-09-10 10:14:07,591 - challenge_notifications - INFO - Containers initialized
+2024-09-10 10:22:31,345 - challenge_notifications - INFO - Application Started
+2024-09-10 10:22:31,350 - challenge_notifications - INFO - Containers initialized

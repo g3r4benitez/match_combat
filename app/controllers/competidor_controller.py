@@ -11,16 +11,25 @@ from app.exceptions.general_exeptions import InternalServerError
 
 router = APIRouter()
 
+@router.get("")
+def get_competidores(session: Session = Depends(get_session)):
+    competidor_service = CompetidorService(session)
+    try:
+        return competidor_service.get_all()
+    except Exception as e:
+        raise InternalServerError(message="Can't get competidores")
+
+
 @router.post("/", response_model=Competidor)
 def create_user(competidor: Competidor, session: Session = Depends(get_session)):
     competidor_service = CompetidorService(session)
     try:
-        return competidor_service.create_user(competidor)
+        return competidor_service.create_competidor(competidor)
     except Exception as e:
         raise InternalServerError(message="Can't create competidor")
 
 
-@router.post("/importar-competidores/")
+@router.post("/importar_competidores/")
 async def importar_competidores(file: UploadFile = File(...), session: Session = Depends(get_session)):
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="El archivo debe ser un CSV")
@@ -46,7 +55,10 @@ async def importar_competidores(file: UploadFile = File(...), session: Session =
             edad=row["edad"],
             peso=row["peso"],
             modalidad_id=row["modalidad_id"],
-            sexo_id=row["sexo_id"]
+            sexo_id=row["sexo_id"],
+            escuela=row["escuela"],
+            historial=row['historial'],
+            historial_str=row['historial_str']
         )
         competidores.append(competidor)
 

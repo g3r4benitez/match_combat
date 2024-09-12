@@ -17,8 +17,15 @@ def get_competidores(session: Session = Depends(get_session)):
     try:
         return competidor_service.get_all()
     except Exception as e:
-        raise InternalServerError(message="Can't get competidores")
+        raise InternalServerError(message=f"Can't get competidores: {e}")
 
+@router.get("/sin_match")
+def get_competidores_without_match(session: Session = Depends(get_session)):
+    competidor_service = CompetidorService(session)
+    try:
+        return competidor_service.get_all(without_match=True)
+    except Exception as e:
+        raise InternalServerError(message=f"Can't get competidores: {e}")
 
 @router.post("/", response_model=Competidor)
 def create_user(competidor: Competidor, session: Session = Depends(get_session)):

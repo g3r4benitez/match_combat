@@ -1,7 +1,7 @@
 from sqlmodel import Session, select
 
 from app.models.criterios import CriteriosDTO
-from app.models.competidor import Competidor
+from app.models.competidor import Competidor, Match
 from app.core.database import engine
 
 
@@ -12,8 +12,10 @@ class CompetidorService:
     def get(self, competidor_id: int):
         return self.session.get(Competidor, competidor_id)
 
-    def get_all(self):
+    def get_all(self, without_match: bool = False):
         statement = select(Competidor)
+        if without_match == True:
+            statement = statement.where(Competidor.matched == False)
         results = self.session.exec(statement)
         return results.all()
 
@@ -26,12 +28,15 @@ class CompetidorService:
         self.session.refresh(competidor)
         return competidor
 
+
+
     def get_match(self, criterios: CriteriosDTO):
         competidor = self.get(criterios.competidor_id)
         statement = (select(Competidor)
                      .where(Competidor.id != criterios.competidor_id)
                      .where(Competidor.modalidad_id == criterios.modalidad_id)
-                     .where(Competidor.sexo_id == competidor.sexo_id))
+                     .where(Competidor.sexo_id == competidor.sexo_id)
+                     .where(Competidor.matched == False))
 
         if criterios.edad_margen:
             edad_minima = competidor.edad - criterios.edad_margen

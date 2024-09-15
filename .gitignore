@@ -120,3 +120,5 @@ Pipfile*
 
 # Pylint
 .pylintrc
+
+.db

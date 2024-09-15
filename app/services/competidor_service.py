@@ -35,8 +35,10 @@ class CompetidorService:
         statement = (select(Competidor)
                      .where(Competidor.id != criterios.competidor_id)
                      .where(Competidor.modalidad_id == criterios.modalidad_id)
-                     .where(Competidor.sexo_id == competidor.sexo_id)
-                     .where(Competidor.matched == False))
+                     .where(Competidor.sexo_id == competidor.sexo_id))
+
+        if not criterios.include_matched:
+            statement = statement.where(Competidor.matched == False)
 
         if criterios.edad_margen:
             edad_minima = competidor.edad - criterios.edad_margen

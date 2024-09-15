@@ -6,3 +6,4 @@ class CriteriosDTO(SQLModel):
     peso_margen: int | None
     modalidad_id: int
     historial_margen: int | None
+    include_matched: bool = False

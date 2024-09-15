@@ -15,10 +15,10 @@ router = APIRouter()
 @router.post("/")
 def search_oponents(criterios: CriteriosDTO,  session: Session = Depends(get_session)):
     competidor_service = CompetidorService(session)
-    try:
-        return competidor_service.get_match(criterios)
-    except Exception as e:
-        raise InternalServerError(message="Can't get matchs")
+    #try:
+    return competidor_service.get_match(criterios)
+    #except Exception as e:
+    #    raise InternalServerError(message=f"Can't get matchs, cause: '{e}'")
 
 @router.post("/create/", response_model=Match)
 def crear_match(match_data: MatchCreate, session: Session = Depends(get_session)):

@@ -3,7 +3,7 @@
 *.pyc
 
 #Logs
-sql_app.log
+sql_app.db
 
 #DB
 *.db

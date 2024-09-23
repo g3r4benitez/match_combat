@@ -1,6 +1,13 @@
 # Hidden files
 .DS_store
 *.pyc
+
+#Logs
+*.log
+
+#DB
+*.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

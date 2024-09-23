@@ -65,7 +65,8 @@ async def importar_competidores(file: UploadFile = File(...), session: Session =
             sexo_id=row["sexo_id"],
             escuela=row["escuela"],
             historial=row['historial'],
-            historial_str=row['historial_str']
+            historial_str=row['historial_str'],
+            comentarios=row['comentarios']
         )
         competidores.append(competidor)
 

@@ -1,5 +1,6 @@
 from sqlmodel import Session, select
 
+from app.core.logger import logger
 from app.models.criterios import CriteriosDTO
 from app.models.competidor import Competidor, Match
 from app.core.database import engine
@@ -48,6 +49,7 @@ class CompetidorService:
             )
 
         if criterios.peso_margen:
+            logger.info(f"incluir en la busqueda criterio peso: {criterios.peso_margen}")
             peso_minimo = competidor.peso - criterios.peso_margen
             peso_maximo = competidor.peso + criterios.peso_margen
             statement = statement.where(

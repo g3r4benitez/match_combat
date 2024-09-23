@@ -1,7 +1,9 @@
 # Match Combat - Gerardo Benitez
 Un proyecto que pretende resolver la problemática de buscar openentes 
 para eventos de deportes de contacto, dado un lista de competidores, 
-y basandose en criterios como el sexo, el peso, la experiencia. 
+y basandose en criterios como el sexo, el peso, la experiencia, poder seleccionar
+las mejores opciones para cada competidor, y luego crear los matchs y sacar de las
+opciones a los competidores que ya tienen pelea "armada".
 
 
 

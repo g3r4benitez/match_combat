@@ -1,2 +1,5 @@
 *.pyc
 *.db
+sql_app.db
+.idea
+.idea/**

@@ -3,3 +3,6 @@
 sql_app.db
 .idea
 .idea/**
+.venv
+.venv/**
+

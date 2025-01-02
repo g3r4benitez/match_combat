@@ -46,22 +46,6 @@ docker-compose up
    uvicorn app.main:app --host 0.0.0.0 --port 9009 --reload
    
    ```
-3. Start RabbitMq
-    ```sh
-   docker-compose up rabbit
-   ```
-4. Start Celery
-
-    in other console
-   ```sh
-   
-   source .venv/bin/activate
-   set -a
-   source .env
-   set +a
-   celery -A app.core.celery_worker worker --loglevel=info -Q report_tabs
-   
-   ```
 
 ### Logs
 The applications logs are located in 

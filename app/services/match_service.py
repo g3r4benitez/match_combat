@@ -34,6 +34,17 @@ def registrar_match(session: Session, match_data: MatchCreate):
 
     return nuevo_match
 
+def get_all_matchs(session: Session):
+    statement = (select(Match))
+    results = session.exec(statement)
+    matchs = []
+    for r in results:
+        matchs.append({
+            'competidor_1: ': r.competidor_1,
+            'competidor_2: ': r.competidor_2,
+        })
+    return matchs
+
 def get_matchs_by_modalidad_id(modalidad_id: int, session: Session):
     statement = (select(Match)
                  .where(Match.modalidad_id == modalidad_id))

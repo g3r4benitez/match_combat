@@ -1,17 +1,16 @@
 from fastapi import APIRouter, Depends,UploadFile, File, HTTPException
 from sqlmodel import Session, select
-from typing import List
 import pandas as pd
 from io import StringIO
 
 from app.models.competidor import Competidor
-from app.services.competidor_service import CompetidorService
+from app.services.competidor_service import CompetidorService, competidor_service
 from app.core.database import get_session
 from app.exceptions.general_exeptions import InternalServerError
 
 router = APIRouter()
 
-@router.get("")
+@router.get("/")
 def get_competidores(session: Session = Depends(get_session)):
     competidor_service = CompetidorService(session)
     try:
@@ -75,3 +74,9 @@ async def importar_competidores(file: UploadFile = File(...), session: Session =
     session.commit()
 
     return {"message": f"Se han importado {len(competidores)} competidores correctamente"}
+
+
+@router.get("/{competidor_id}")
+def get_competidor_by_id(competidor_id: int, session: Session = Depends(get_session)):
+    competidor_service= CompetidorService(session)
+    return competidor_service.get(competidor_id)

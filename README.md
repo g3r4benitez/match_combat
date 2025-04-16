@@ -1,11 +1,15 @@
 # Match Combat - Gerardo Benitez
-Un proyecto que pretende resolver la problemática de buscar openentes 
-para eventos de deportes de contacto, dado un lista de competidores, 
-y basandose en criterios como el sexo, el peso, la experiencia, poder seleccionar
-las mejores opciones para cada competidor, y luego crear los matchs y sacar de las
-opciones a los competidores que ya tienen pelea "armada".
 
+A project that aims to solve the problem of finding openers for contact sports events, given a list of competitors and 
+based on criteria such as gender, weight, and experience, to be able to select the best options for each competitor, and
+then create matches and eliminate from the options the competitors who already have a fight "arranged."
 
+Un proyecto que pretende resolver la problemática de buscar openentes para eventos de deportes de contacto, dado un 
+lista de competidores, y basandose en criterios como el sexo, el peso, la experiencia, poder seleccionar las mejores 
+opciones para cada competidor, y luego crear los matchs y sacar de las opciones a los competidores que ya tienen pelea 
+"armada".
+
+## Technologies 
 
 * FastAPI
 * Docker
@@ -51,18 +55,6 @@ docker-compose up
 The applications logs are located in 
 ```
 ./logs/app.logs
-```
-
-### Working
-
-#### Try Api using curl
-```
-curl --location --request POST 'http://localhost:9009/api/notification' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "category": "films", 
-    "message": "Dec 24, world premiere of the movie Avatar 3"
-}'
 ```
 
 #### Api Documentation

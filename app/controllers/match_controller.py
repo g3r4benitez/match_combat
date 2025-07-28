@@ -6,7 +6,7 @@ from app.core.database import get_session
 from app.models.criterios import CriteriosDTO
 from app.models.competidor import Match
 from app.entities.match_entities import MatchCreate
-from app.services.match_service import registrar_match, get_matchs_by_modalidad_id, get_all_matchs
+from app.services.match_service import registrar_match, get_matchs_by_modalidad_id, get_all_matchs, export_all_matchs_to_csv
 
 
 router = APIRouter()
@@ -27,6 +27,11 @@ def crear_match(match_data: MatchCreate, session: Session = Depends(get_session)
 @router.get("/")
 def get_matchs(session: Session = Depends(get_session)):
     return get_all_matchs(session)
+
+@router.get("/export")
+def export_matchs(session: Session = Depends(get_session)):
+    return export_all_matchs_to_csv(session)
+
 
 @router.get("/{modalidad_id}")
 def get_matchs_by_modalidad(modalidad_id: int, session: Session = Depends(get_session)):

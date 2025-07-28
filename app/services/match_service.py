@@ -45,6 +45,29 @@ def get_all_matchs(session: Session):
         })
     return matchs
 
+def export_all_matchs_to_csv(session: Session):
+    """On this function I want to export the list of matchs to csv"""
+    statement = select(Match)
+    results = session.exec(statement)
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['id', 'Peleador 1', 'Escuela', 'Peleador 2', 'Escuela', 'modalidad_id', 'resultado'])
+
+    for match in results:
+        writer.writerow([
+            match.id,
+            match.competidor_1_id,
+            match.competidor_1.escuela, 
+            match.competidor_2_id,
+            match.competidor_2.escuela,
+            match.modalidad_id,
+        ])
+
+    output.seek(0)
+    return output.getvalue()
+
+
 def get_matchs_by_modalidad_id(modalidad_id: int, session: Session):
     statement = (select(Match)
                  .where(Match.modalidad_id == modalidad_id))

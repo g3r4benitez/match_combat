@@ -10,15 +10,17 @@ services:
       - "9009:9009"
     volumes:
       - .:/code
+    depends_on:
+      - postgres_match
 
-  postgres:
+  postgres_match:
     image: postgres:10.1-alpine
     environment:
       POSTGRES_USER: match
       POSTGRES_PASSWORD: match
       POSTGRES_DB: match
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data
 

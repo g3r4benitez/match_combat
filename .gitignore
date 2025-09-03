@@ -6,3 +6,5 @@ sql_app.db
 .venv
 .venv/**
 
+logs/
+.mypy_cache/

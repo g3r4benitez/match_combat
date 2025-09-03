@@ -1,11 +1,13 @@
+import csv
+import io
 from sqlmodel import Session, select
 from fastapi import HTTPException
 
 from app.models.competidor import Competidor
-from app.entities.match_entities import MatchCreate
+from app.entities.match_entities import MatchCreateDTO
 from app.models.competidor import Match
 
-def registrar_match(session: Session, match_data: MatchCreate):
+def registrar_match(session: Session, match_data: MatchCreateDTO):
     # Validar que los competidores existen
     competidor_1 = session.get(Competidor, match_data.competidor_1_id)
     competidor_2 = session.get(Competidor, match_data.competidor_2_id)
@@ -52,16 +54,16 @@ def export_all_matchs_to_csv(session: Session):
 
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(['id', 'Peleador 1', 'Escuela', 'Peleador 2', 'Escuela', 'modalidad_id', 'resultado'])
+    writer.writerow(['id', 'Peleador 1', 'Escuela', 'Peleador 2', 'Escuela', 'modalidad_id'])
 
     for match in results:
         writer.writerow([
             match.id,
-            match.competidor_1_id,
+            match.competidor_1.nombre,
             match.competidor_1.escuela, 
-            match.competidor_2_id,
+            match.competidor_2.nombre,
             match.competidor_2.escuela,
-            match.modalidad_id,
+            match.modalidad.name,
         ])
 
     output.seek(0)

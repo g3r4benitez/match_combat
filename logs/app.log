@@ -1365,3 +1365,5 @@ WHERE subscription.id = %(pk_1)s]
 2025-09-04 08:19:23,260 - challenge_notifications - INFO - Containers initialized
 2025-09-04 08:21:36,428 - challenge_notifications - INFO - Application Started
 2025-09-04 08:21:36,442 - challenge_notifications - INFO - Containers initialized
+2025-09-04 12:21:03,751 - challenge_notifications - INFO - Application Started
+2025-09-04 12:21:03,765 - challenge_notifications - INFO - Containers initialized

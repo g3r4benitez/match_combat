@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Depends,UploadFile, File, HTTPException
+from fastapi.responses import StreamingResponse
+
 from sqlmodel import Session, select
 import pandas as pd
 from io import StringIO
 
 from app.models.competidor import Competidor
-from app.services.competidor_service import CompetidorService, competidor_service
+from app.services.competidor_service import CompetidorService, export_all_competitors_to_csv
 from app.core.database import get_session
 from app.exceptions.general_exeptions import InternalServerError
 
@@ -17,6 +19,12 @@ def get_competidores(session: Session = Depends(get_session)):
         return competidor_service.get_all()
     except Exception as e:
         raise InternalServerError(message=f"Can't get competidores: {e}")
+
+@router.get("/export", response_class=StreamingResponse)
+def export_competidores(session: Session = Depends(get_session)):
+    competidor_service = CompetidorService(session)
+    return export_all_competitors_to_csv(session)
+
 
 @router.get("/sin_match")
 def get_competidores_without_match(session: Session = Depends(get_session)):

@@ -1,3 +1,7 @@
+import csv
+import io
+
+from fastapi.responses import StreamingResponse
 from sqlmodel import Session, select
 
 from app.core.logger import logger
@@ -5,6 +9,45 @@ from app.models.criterios import CriteriosDTO
 from app.models.competidor import Competidor, Match
 from app.core.database import engine
 
+modalidades = {
+    1: "Kick Exhibicion",
+    2:"Kick Amateur",
+    3:"Box Exhibicion",
+    4:"Box Amateur",
+    5: "Full Exhibicion",
+    6: "Full Amateur",
+    7: "Muay Thai Exhibicion",
+    8: "Muay Thai Amateur",
+}
+
+
+def export_all_competitors_to_csv(session: Session):
+        """On this function I want to export the list of competidores to csv"""
+        statement = (select(Competidor)
+                    .order_by(Competidor.escuela))
+        results = session.exec(statement)
+
+        output = io.StringIO()
+        writer = csv.writer(output)
+        writer.writerow(['#', 'Nombre', 'Edad', 'Peso', 'Modalidad', 'Sexo', 'tiene_oponente?', 'Escuela'])
+
+        for competidor in results:
+            writer.writerow([
+                competidor.id,
+                competidor.nombre,
+                competidor.edad,
+                competidor.peso,
+                modalidades[competidor.modalidad_id],
+                'M' if competidor.sexo_id else 'F',
+                'Si' if competidor.matched else 'No',
+                competidor.escuela,
+            ])
+
+        output.seek(0)
+        headers = {
+            'Content-Disposition': 'attachment; filename="competidores.csv"'
+        }
+        return StreamingResponse(output, media_type='text/csv', headers=headers)
 
 class CompetidorService:
     def __init__(self, session: Session):
@@ -19,6 +62,9 @@ class CompetidorService:
             statement = statement.where(Competidor.matched == False)
         results = self.session.exec(statement)
         return results.all()
+    
+    
+    
 
     def create_competidor(self, competidor: Competidor) -> Competidor:
         if competidor.id == 0:

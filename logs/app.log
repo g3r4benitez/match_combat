@@ -1309,3 +1309,59 @@ WHERE subscription.id = %(pk_1)s]
 2025-09-03 08:31:06,786 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 9
 2025-09-03 08:31:10,608 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
 2025-09-03 08:31:21,198 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 7
+2025-09-03 09:43:29,709 - challenge_notifications - INFO - Application Started
+2025-09-03 09:43:29,724 - challenge_notifications - INFO - Containers initialized
+2025-09-03 22:21:46,488 - challenge_notifications - INFO - Application Started
+2025-09-03 22:21:46,534 - challenge_notifications - INFO - Containers initialized
+2025-09-03 22:25:03,172 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 10
+2025-09-03 22:25:05,222 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 10
+2025-09-03 22:25:11,005 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 20
+2025-09-03 22:25:15,499 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 20
+2025-09-03 22:25:19,909 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 20
+2025-09-03 22:26:49,265 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 9
+2025-09-03 22:26:54,199 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 9
+2025-09-03 22:27:02,790 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 11
+2025-09-03 22:27:55,375 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 7
+2025-09-03 22:43:53,275 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 10
+2025-09-03 22:44:00,891 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
+2025-09-03 22:44:05,126 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 6
+2025-09-03 22:44:28,737 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 6
+2025-09-03 22:44:59,991 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 10
+2025-09-03 22:45:51,425 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 8
+2025-09-03 22:46:14,499 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
+2025-09-03 22:46:17,683 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 7
+2025-09-03 22:46:21,482 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 9
+2025-09-03 22:47:31,005 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 22
+2025-09-03 22:47:47,885 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 6
+2025-09-03 22:48:29,060 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 9
+2025-09-03 22:48:48,895 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 6
+2025-09-03 22:49:20,281 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
+2025-09-03 22:49:23,844 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
+2025-09-03 22:51:27,905 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 8
+2025-09-03 22:52:13,629 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 8
+2025-09-03 22:52:30,126 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 10
+2025-09-03 22:53:07,516 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 7
+2025-09-03 22:54:00,558 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
+2025-09-03 22:54:37,543 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 8
+2025-09-03 22:54:56,094 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 5
+2025-09-03 22:55:21,184 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 6
+2025-09-03 22:55:51,366 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 6
+2025-09-03 22:56:26,428 - challenge_notifications - INFO - incluir en la busqueda criterio peso: 4
+2025-09-04 08:09:15,066 - challenge_notifications - INFO - Application Started
+2025-09-04 08:09:15,080 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:12:56,583 - challenge_notifications - INFO - Application Started
+2025-09-04 08:12:56,601 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:13:32,310 - challenge_notifications - INFO - Application Started
+2025-09-04 08:13:32,325 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:13:36,959 - challenge_notifications - INFO - Application Started
+2025-09-04 08:13:36,972 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:16:06,326 - challenge_notifications - INFO - Application Started
+2025-09-04 08:16:06,340 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:17:35,704 - challenge_notifications - INFO - Application Started
+2025-09-04 08:17:35,718 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:19:08,648 - challenge_notifications - INFO - Application Started
+2025-09-04 08:19:08,662 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:19:23,246 - challenge_notifications - INFO - Application Started
+2025-09-04 08:19:23,260 - challenge_notifications - INFO - Containers initialized
+2025-09-04 08:21:36,428 - challenge_notifications - INFO - Application Started
+2025-09-04 08:21:36,442 - challenge_notifications - INFO - Containers initialized

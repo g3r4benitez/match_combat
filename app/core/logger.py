@@ -1,6 +1,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 import sys
+import os
 
 # Principal Setting for logger
 logger = logging.getLogger("challenge_notifications")
@@ -15,6 +16,7 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 # Manager to write logs in file
+os.makedirs("logs", exist_ok=True)
 file_handler = RotatingFileHandler("logs/app.log", maxBytes=1000000, backupCount=3)
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)

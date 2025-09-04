@@ -17,6 +17,6 @@ logger.addHandler(console_handler)
 
 # Manager to write logs in file
 os.makedirs("logs", exist_ok=True)
-file_handler = RotatingFileHandler("logs/app.log", maxBytes=1000000, backupCount=3)
+file_handler = RotatingFileHandler("/tmp/logs/app.log", maxBytes=1000000, backupCount=3)
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)

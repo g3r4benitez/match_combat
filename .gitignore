@@ -8,3 +8,7 @@ sql_app.db
 
 logs/
 .mypy_cache/
+
+logs
+logs/**
+__pycache__

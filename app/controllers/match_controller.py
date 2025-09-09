@@ -8,6 +8,7 @@ from app.models.criterios import CriteriosDTO
 from app.models.competidor import Match
 from app.entities.match_entities import MatchCreateDTO
 from app.services.match_service import registrar_match, get_matchs_by_modalidad_id, get_all_matchs, export_all_matchs_to_csv
+from app.services.match_service import delete_match as delete_match_service
 
 
 router = APIRouter()
@@ -37,3 +38,9 @@ def export_matchs(session: Session = Depends(get_session)):
 @router.get("/{modalidad_id}")
 def get_matchs_by_modalidad(modalidad_id: int, session: Session = Depends(get_session)):
     return get_matchs_by_modalidad_id(modalidad_id, session)
+
+@router.delete("/{id}")
+def delete_match(id: int, session: Session = Depends(get_session)):
+    return delete_match_service(id, session)
+    
+

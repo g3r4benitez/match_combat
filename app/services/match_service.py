@@ -42,6 +42,7 @@ def get_all_matchs(session: Session):
     matchs = []
     for r in results:
         matchs.append({
+            'id': r.id,
             'competidor_1: ': r.competidor_1,
             'competidor_2: ': r.competidor_2,
         })
@@ -54,7 +55,7 @@ def export_all_matchs_to_csv(session: Session):
 
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(['id', 'Peleador 1', 'Escuela', 'Peleador 2', 'Escuela', 'modalidad_id'])
+    writer.writerow(['id', 'Peleador 1', 'Escuela', 'Peleador 2', 'Escuela', 'modalidad_id', 'comentarios'])
 
     for match in results:
         writer.writerow([
@@ -64,6 +65,7 @@ def export_all_matchs_to_csv(session: Session):
             match.competidor_2.nombre,
             match.competidor_2.escuela,
             match.modalidad.name,
+            f"C1:{match.competidor_1.comentarios}, C2: {match.competidor_2.comentarios}"
         ])
 
     output.seek(0)
@@ -81,3 +83,29 @@ def get_matchs_by_modalidad_id(modalidad_id: int, session: Session):
             'competidor_2: ': r.competidor_2,
         })
     return matchs
+
+
+def delete_match(match_id: int, session: Session):
+    match = session.get(Match, match_id)
+    if not match:
+        raise HTTPException(status_code=404, detail="Match no encontrado")
+
+    try:
+        # Actualizar el estado de los competidores a no emparejados
+        competidor_1 = session.get(Competidor, match.competidor_1_id)
+        competidor_2 = session.get(Competidor, match.competidor_2_id)
+
+        if competidor_1:
+            competidor_1.matched = False
+            session.add(competidor_1)
+        if competidor_2:
+            competidor_2.matched = False
+            session.add(competidor_2)
+
+        # Eliminar el match
+        session.delete(match)
+        session.commit()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"No se pudo eliminar el match por que: '{e}'")
+
+    return {"detail": "Match eliminado exitosamente"}

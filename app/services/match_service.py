@@ -55,14 +55,16 @@ def export_all_matchs_to_csv(session: Session):
 
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(['id', 'Peleador 1', 'Escuela', 'Peleador 2', 'Escuela', 'modalidad_id', 'comentarios'])
+    writer.writerow(['id', 'Peleador 1', 'historial', 'Escuela', 'Peleador 2', 'historial', 'Escuela', 'modalidad_id', 'comentarios'])
 
     for match in results:
         writer.writerow([
             match.id,
             match.competidor_1.nombre,
+            match.competidor_1.historial_str,
             match.competidor_1.escuela, 
             match.competidor_2.nombre,
+            match.competidor_2.historial_str,
             match.competidor_2.escuela,
             match.modalidad.name,
             f"C1:{match.competidor_1.comentarios}, C2: {match.competidor_2.comentarios}"

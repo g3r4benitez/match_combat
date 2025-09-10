@@ -29,7 +29,7 @@ def export_all_competitors_to_csv(session: Session):
 
         output = io.StringIO()
         writer = csv.writer(output)
-        writer.writerow(['#', 'Nombre', 'Edad', 'Peso', 'Modalidad', 'Sexo', 'tiene_oponente?', 'Escuela', 'Comentarios' ])
+        writer.writerow(['#', 'Nombre', 'Edad', 'Peso', 'Modalidad', 'Sexo', 'tiene_oponente?', 'Escuela', 'historial', 'Comentarios' ])
 
         for competidor in results:
             writer.writerow([
@@ -41,6 +41,7 @@ def export_all_competitors_to_csv(session: Session):
                 'M' if competidor.sexo_id else 'F',
                 'Si' if competidor.matched else 'No',
                 competidor.escuela,
+                competidor.historial_str,
                 competidor.comentarios
             ])
 

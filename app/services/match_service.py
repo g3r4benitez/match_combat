@@ -4,7 +4,7 @@ from sqlmodel import Session, select
 from fastapi import HTTPException
 
 from app.models.competidor import Competidor
-from app.entities.match_entities import MatchCreateDTO
+from app.entities.match_entities import MatchCreateDTO, SortData
 from app.models.competidor import Match
 
 def registrar_match(session: Session, match_data: MatchCreateDTO):
@@ -37,7 +37,7 @@ def registrar_match(session: Session, match_data: MatchCreateDTO):
     return nuevo_match
 
 def get_all_matchs(session: Session):
-    statement = (select(Match))
+    statement = (select(Match).order_by(Match.orden.desc()))
     results = session.exec(statement)
     matchs = []
     for r in results:
@@ -45,12 +45,28 @@ def get_all_matchs(session: Session):
             'id': r.id,
             'competidor_1: ': r.competidor_1,
             'competidor_2: ': r.competidor_2,
+            'orden': r.orden, 
+            'completada': r.completada
+        })
+    return matchs
+
+def get_all_matchs_pending(session: Session):
+    statement = (select(Match).where(Match.completada == False).order_by(Match.orden.asc())).limit(6)
+    results = session.exec(statement)
+    matchs = []
+    for r in results:
+        matchs.append({
+            'id': r.id,
+            'competidor_1: ': r.competidor_1,
+            'competidor_2: ': r.competidor_2,
+            'orden': r.orden
         })
     return matchs
 
 def export_all_matchs_to_csv(session: Session):
     """On this function I want to export the list of matchs to csv"""
     statement = select(Match)
+    statement = statement.order_by(Match.orden.asc())
     results = session.exec(statement)
 
     output = io.StringIO()
@@ -111,3 +127,33 @@ def delete_match(match_id: int, session: Session):
         raise HTTPException(status_code=500, detail=f"No se pudo eliminar el match por que: '{e}'")
 
     return {"detail": "Match eliminado exitosamente"}
+
+def cambiar_estado_match(match_id: int, session: Session):
+    match = session.get(Match, match_id)
+    if not match:
+        raise HTTPException(status_code=404, detail="Match no encontrado")
+
+    try:
+        match.completada = not match.completada
+        session.add(match)
+        session.commit()
+        session.refresh(match)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"No se pudo actualizar el estado del match por que: '{e}'")
+
+    return match
+
+def sort_match(sort_data: SortData, session: Session):
+    match = session.get(Match, sort_data.match_id)
+    if not match:
+        raise HTTPException(status_code=404, detail="Match no encontrado")
+
+    try:
+        match.orden = sort_data.orden
+        session.add(match)
+        session.commit()
+        session.refresh(match)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"No se pudo actualizar el orden del match por que: '{e}'")
+
+    return match

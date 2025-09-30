@@ -6,9 +6,9 @@ from app.services.competidor_service import CompetidorService
 from app.core.database import get_session
 from app.models.criterios import CriteriosDTO
 from app.models.competidor import Match
-from app.entities.match_entities import MatchCreateDTO
+from app.entities.match_entities import MatchCreateDTO, SortData
 from app.services.match_service import registrar_match, get_matchs_by_modalidad_id, get_all_matchs, export_all_matchs_to_csv
-from app.services.match_service import delete_match as delete_match_service
+from app.services.match_service import delete_match as delete_match_service, sort_match, get_all_matchs_pending, cambiar_estado_match
 
 
 router = APIRouter()
@@ -30,6 +30,10 @@ def crear_match(match_data: MatchCreateDTO, session: Session = Depends(get_sessi
 def get_matchs(session: Session = Depends(get_session)):
     return get_all_matchs(session)
 
+@router.get("/pending")
+def get_matchs_pending(session: Session = Depends(get_session)):
+    return get_all_matchs_pending(session)
+
 @router.get("/export", response_class=StreamingResponse)
 def export_matchs(session: Session = Depends(get_session)):
     return export_all_matchs_to_csv(session)
@@ -42,5 +46,13 @@ def get_matchs_by_modalidad(modalidad_id: int, session: Session = Depends(get_se
 @router.delete("/{id}")
 def delete_match(id: int, session: Session = Depends(get_session)):
     return delete_match_service(id, session)
+
+@router.patch("/cambiar-estado/{id}")
+def actualizar(id: int, session: Session = Depends(get_session)):
+    return cambiar_estado_match(id, session)
+
+@router.post("/sort")
+def sort_match_controller(sort_data: SortData, session: Session = Depends(get_session)):
+    return sort_match(sort_data, session)
     
 

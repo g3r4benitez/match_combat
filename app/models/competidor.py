@@ -47,3 +47,5 @@ class Match(SQLModel, table=True):
     modalidad_id: Optional[int] = Field(default=None, foreign_key="modalidad.id")
     modalidad: Optional[Modalidad] = Relationship(back_populates="matchs")
     comentarios: Optional[str] = Field(default="")
+    orden: Optional[int] = Field(default=0)
+    completada: Optional[bool] = Field(default=False)

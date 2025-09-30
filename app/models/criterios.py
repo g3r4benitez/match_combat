@@ -7,3 +7,4 @@ class CriteriosDTO(SQLModel):
     modalidad_id: int
     historial_margen: int | None
     include_matched: bool = False
+    include_others: bool = False

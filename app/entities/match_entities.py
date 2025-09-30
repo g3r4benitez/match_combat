@@ -8,6 +8,11 @@ class MatchCreateDTO(BaseModel):
     modalidad_id: int
     resultado: Optional[str] = None
     comentarios: Optional[str] = None
+    completada: Optional[bool] = False
+
+class SortData(BaseModel):
+    match_id: int
+    orden: int
 
 
 class MatchUpdateDTO(BaseModel):
@@ -16,6 +21,8 @@ class MatchUpdateDTO(BaseModel):
     modalidad_id: Optional[int] = None
     resultado: Optional[str] = None
     comentarios: Optional[str] = None
+    orden: Optional[int] = None
+    completada: Optional[bool] = None
 
 
 

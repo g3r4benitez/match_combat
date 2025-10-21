@@ -31,6 +31,8 @@ def registrar_match(session: Session, match_data: MatchCreateDTO):
         session.add(nuevo_match)
         session.commit()
         session.refresh(nuevo_match)
+        nuevo_match.orden = nuevo_match.id
+        session.commit()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"No se pudo crear el match por que: '{e}'")
 
@@ -147,9 +149,26 @@ def sort_match(sort_data: SortData, session: Session):
     match = session.get(Match, sort_data.match_id)
     if not match:
         raise HTTPException(status_code=404, detail="Match no encontrado")
-
+    
+    match = session.get(Match, sort_data.match_id)
+    print("\n\n ======================================\nMATCH: ", match.orden)
+    direction = 1 if sort_data.orden >  match.orden else -1
+    
+    # find the match with the same orden
+    statement = (select(Match)
+                 .where(Match.orden == sort_data.orden + direction ))
+    
+    results = session.exec(statement)
+    print("\n\n===========================================")
+    print("orden propuesto por la UI:", sort_data.orden)
+    if len(results.all()) > 0:
+        match_to_change = results.one()
+        match_to_change.orden = match_to_change.orden + direction
+        session.add(match_to_change)
+        session.commit()
+        session.refresh(match_to_change)
     try:
-        match.orden = sort_data.orden
+        match.orden = sort_data.orden+1
         session.add(match)
         session.commit()
         session.refresh(match)

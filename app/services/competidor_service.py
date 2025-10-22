@@ -76,8 +76,6 @@ class CompetidorService:
         self.session.add(competidor)
         self.session.commit()
         self.session.refresh(competidor)
-        competidor.order = competidor.id
-        self.session.commit()
         return competidor
 
 

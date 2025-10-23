@@ -43,6 +43,12 @@ def create_user(competidor: Competidor, session: Session = Depends(get_session))
         raise InternalServerError(message="Can't create competidor")
 
 
+@router.delete("/{id}")
+def delete_competidor(id: int, session: Session = Depends(get_session)):
+    competidor_service = CompetidorService(session)
+    competidor_service.delete(id, session)
+    
+
 @router.post("/importar_competidores/")
 async def importar_competidores(file: UploadFile = File(...), session: Session = Depends(get_session)):
     if not file.filename.endswith('.csv'):

@@ -4,6 +4,8 @@ import io
 from fastapi.responses import StreamingResponse
 from sqlmodel import Session, select
 
+from fastapi import HTTPException
+
 from app.core.logger import logger
 from app.models.criterios import CriteriosDTO
 from app.models.competidor import Competidor, Match
@@ -65,9 +67,6 @@ class CompetidorService:
         results = self.session.exec(statement)
         logger.info("competidores listado")
         return results.all()
-    
-    
-    
 
     def create_competidor(self, competidor: Competidor) -> Competidor:
         if competidor.id == 0:
@@ -77,8 +76,6 @@ class CompetidorService:
         self.session.commit()
         self.session.refresh(competidor)
         return competidor
-
-
 
     def get_match(self, criterios: CriteriosDTO):
         competidor = self.get(criterios.competidor_id)
@@ -109,6 +106,20 @@ class CompetidorService:
 
         results = self.session.exec(statement)
         return results.all()
+    
+    def delete(self, competidor_id: int, session: Session):
+        competidor = session.get(Competidor, competidor_id)
+        if not competidor:
+            raise HTTPException(status_code=404, detail=f'Competidor con id {competidor_id} no encontrado')
+
+        try:
+            session.delete(competidor)
+            session.commit()
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"No se pudo eliminar el match por que: '{e}'")
+
+        return {"detail": "Competidor eliminado exitosamente"}
+
 
 session = Session(engine)
 competidor_service = CompetidorService(session)

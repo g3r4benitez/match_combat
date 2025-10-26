@@ -6,6 +6,7 @@ from fastapi import HTTPException
 from app.models.competidor import Competidor
 from app.entities.match_entities import MatchCreateDTO, SortData
 from app.models.competidor import Match
+from sqlalchemy import update
 
 def registrar_match(session: Session, match_data: MatchCreateDTO):
     # Validar que los competidores existen
@@ -53,7 +54,7 @@ def get_all_matchs(session: Session):
     return matchs
 
 def get_all_matchs_pending(session: Session):
-    statement = (select(Match).where(Match.completada == False).order_by(Match.orden.asc())).limit(6)
+    statement = (select(Match).where(Match.completada == False).order_by(Match.orden.asc())).limit(12)
     results = session.exec(statement)
     matchs = []
     for r in results:
@@ -146,32 +147,30 @@ def cambiar_estado_match(match_id: int, session: Session):
     return match
 
 def sort_match(sort_data: SortData, session: Session):
+    """
+    Recibe 2 parametros
+    match_id: referencia a la pelea
+    orden: indica la nueva posicion
+    
+    direccion: es calculada, si la nueva posicion es superior a la anterior el valor es 1
+    sino, vale -1
+    """
     match = session.get(Match, sort_data.match_id)
     if not match:
         raise HTTPException(status_code=404, detail="Match no encontrado")
     
     match = session.get(Match, sort_data.match_id)
-    print("\n\n ======================================\nMATCH: ", match.orden)
-    direction = 1 if sort_data.orden >  match.orden else -1
     
-    # find the match with the same orden
-    statement = (select(Match)
-                 .where(Match.orden == sort_data.orden + direction ))
-    
-    results = session.exec(statement)
-    print("\n\n===========================================")
-    print("orden propuesto por la UI:", sort_data.orden)
-    if len(results.all()) > 0:
-        match_to_change = results.one()
-        match_to_change.orden = match_to_change.orden + direction
-        session.add(match_to_change)
-        session.commit()
-        session.refresh(match_to_change)
     try:
-        match.orden = sort_data.orden+1
+        match.orden = sort_data.orden
         session.add(match)
         session.commit()
         session.refresh(match)
+
+        # Actualizar el orden de todas las peleas que tenga el mismo orden u orden superior
+        statement = update(Match).where(Match.orden >= sort_data.orden).values(orden=Match.orden + 1)
+        session.exec(statement)
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"No se pudo actualizar el orden del match por que: '{e}'")
 

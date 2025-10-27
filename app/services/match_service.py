@@ -54,7 +54,7 @@ def get_all_matchs(session: Session):
     return matchs
 
 def get_all_matchs_pending(session: Session):
-    statement = (select(Match).where(Match.completada == False).order_by(Match.orden.asc())).limit(12)
+    statement = (select(Match).where(Match.completada == False).order_by(Match.orden.asc())).limit(20)
     results = session.exec(statement)
     matchs = []
     for r in results:

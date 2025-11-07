@@ -64,6 +64,7 @@ class CompetidorService:
         statement = select(Competidor)
         if without_match == True:
             statement = statement.where(Competidor.matched == False)
+        statement = statement.order_by(Competidor.matched.asc())
         results = self.session.exec(statement)
         logger.info("competidores listado")
         return results.all()

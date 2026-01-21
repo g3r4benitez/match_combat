@@ -15,3 +15,6 @@ volumes/**
 logs
 logs/**
 __pycache__
+
+#Environment files
+.env

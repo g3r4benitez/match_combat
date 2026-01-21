@@ -16,9 +16,9 @@ services:
   postgres_match:
     image: postgres:10.1-alpine
     environment:
-      POSTGRES_USER: match
-      POSTGRES_PASSWORD: match
-      POSTGRES_DB: match
+      POSTGRES_USER: match_user
+      POSTGRES_PASSWORD: match_password
+      POSTGRES_DB: match_db
     ports:
       - "5433:5432"
     volumes:

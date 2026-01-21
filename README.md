@@ -39,7 +39,7 @@ docker-compose up
    ```sh
    python3 -m venv .venv
    source .venv/bin/activate
-   pip install requirements.txt
+   pip install -r requirements.txt
    set -a
    source .env
    set +a

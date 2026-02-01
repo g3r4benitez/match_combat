@@ -9,12 +9,18 @@ from app.core.config import (APP_NAME, APP_VERSION, IS_DEBUG)
 from app.core.error_handler import HTTPCustomException, exception_handler, fatal_exception_handler
 from app.core.logger import logger
 
-from app.core.database import init_db
+from app.core.database import init_db, seed_admin
+from sqlmodel import Session
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    seed_admin()
+    from app.core.database import engine
+    from app.services.auth_service import cleanup_expired_tokens
+    with Session(engine) as session:
+        cleanup_expired_tokens(session)
     yield
 
 

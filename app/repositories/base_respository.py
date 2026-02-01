@@ -1,8 +1,5 @@
-import json
-
 from sqlmodel import Session, select, SQLModel
 
-from app.models.user import User
 from app.core.database import engine
 from app.exceptions.general_exeptions import BadRequestException
 
@@ -12,7 +9,7 @@ class BaseRepository:
     @classmethod
     def get(cls, id: int):
         with Session(engine) as session:
-            obj =  session.get(cls.model_name, id)
+            obj = session.get(cls.model_name, id)
             return obj
 
     @classmethod
@@ -39,4 +36,3 @@ class BaseRepository:
             statement = select(cls.model_name)
             results = session.exec(statement)
             return results.all()
-

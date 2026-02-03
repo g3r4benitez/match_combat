@@ -17,7 +17,7 @@ def create_modalidad(modalidad: Modalidad, session: Session = Depends(get_sessio
         raise InternalServerError(message="Can't create modalidad")
 
 
-@router.get("")
+@router.get("/")
 def get_modalidades(session: Session = Depends(get_session)):
     modalidad_service = ModalidadService(session)
     try:

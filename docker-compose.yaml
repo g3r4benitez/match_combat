@@ -19,7 +19,7 @@ services:
       POSTGRES_PASSWORD: match_password
       POSTGRES_DB: match_db
     ports:
-      - "5433:5432"
+      - "5434:5432"
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data
 

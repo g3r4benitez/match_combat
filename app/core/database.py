@@ -4,10 +4,9 @@ from sqlmodel import create_engine, Session, SQLModel, select
 from app.models.competidor import Competidor, Sexo, Modalidad
 from app.models.user import User, TokenBlacklist, PasswordResetToken
 from app.core.logger import logger
+from app.core.config import DB_URL
 
-SQLALCHEMY_DATABASE_URL = os.environ.get("DB_URL")
-
-engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
+engine = create_engine(DB_URL, echo=True)
 
 def init_db():
     print("Executing init db")

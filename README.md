@@ -49,9 +49,9 @@ docker-compose up
 
 ### Option 3: run using pm2
    ```
-   pm2 start ./venv/bin/uvicorn --name "mi-api" -- app.main:app --port 9009
+   pm2 start ecosystem.config.js
    ```
-   
+
 ### Logs
 The applications logs are located in 
 ```

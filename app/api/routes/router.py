@@ -6,6 +6,8 @@ from app.controllers import match_controller as match
 from app.controllers import ping_controller as ping
 from app.controllers import auth_controller as auth
 from app.controllers import user_controller as user
+from app.controllers import entrada_controller as entrada
+from app.controllers import entrada_pdf_controller as entrada_pdf
 from app.core.config import API_PREFIX
 from app.core.security.deps import get_current_user
 
@@ -43,5 +45,17 @@ api_router.include_router(
     user.router,
     tags=["user"],
     prefix="/api/user",
+    dependencies=[Depends(get_current_user)],
+)
+api_router.include_router(
+    entrada.router,
+    tags=["entradas"],
+    prefix="/api/entradas",
+    dependencies=[Depends(get_current_user)],
+)
+api_router.include_router(
+    entrada_pdf.router,
+    tags=["entradas"],
+    prefix="/api/entradas",
     dependencies=[Depends(get_current_user)],
 )

@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Entrada PDF API
+  description: Endpoint para generación de PDF de entrada con código QR
+  version: 1.0.0
+
+paths:
+  /api/entradas/{id}/pdf:
+    get:
+      summary: Generar y descargar PDF de una entrada
+      description: |
+        Genera un documento PDF descargable para una entrada específica.
+        El PDF contiene encabezado del evento, nombre del titular, escuela,
+        y un código QR con el UUID de la entrada.
+        Formato: 5cm x 12cm, vertical (portrait).
+      operationId: generateEntradaPdf
+      tags:
+        - entradas
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID numérico de la entrada
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: PDF generado exitosamente
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              description: Indica que el archivo debe descargarse
+              schema:
+                type: string
+                example: 'attachment; filename="entrada-1.pdf"'
+        '404':
+          description: Entrada no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                detail: "Entrada no encontrada"
+        '422':
+          description: ID con formato inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                detail: "Invalid parameters"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Mensaje de error descriptivo
+      required:
+        - detail

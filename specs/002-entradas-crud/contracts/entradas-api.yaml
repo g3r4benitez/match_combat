@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: Entradas CRUD API
+  version: 1.0.0
+
+paths:
+  /api/entradas/:
+    get:
+      summary: Listar todas las entradas
+      operationId: listEntradas
+      tags: [entradas]
+      security: [{bearerAuth: []}]
+      responses:
+        '200':
+          description: Lista de entradas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entrada'
+    post:
+      summary: Crear una nueva entrada
+      operationId: createEntrada
+      tags: [entradas]
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntradaCreate'
+      responses:
+        '200':
+          description: Entrada creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entrada'
+        '422':
+          description: Datos inválidos
+
+  /api/entradas/{id}:
+    get:
+      summary: Consultar entrada por ID
+      operationId: getEntradaById
+      tags: [entradas]
+      security: [{bearerAuth: []}]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '200':
+          description: Entrada encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entrada'
+        '404':
+          description: Entrada no encontrada
+    put:
+      summary: Actualizar una entrada
+      operationId: updateEntrada
+      tags: [entradas]
+      security: [{bearerAuth: []}]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: integer}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntradaUpdate'
+      responses:
+        '200':
+          description: Entrada actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entrada'
+        '404':
+          description: Entrada no encontrada
+    delete:
+      summary: Eliminar una entrada
+      operationId: deleteEntrada
+      tags: [entradas]
+      security: [{bearerAuth: []}]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: integer}
+      responses:
+        '200':
+          description: Entrada eliminada
+        '404':
+          description: Entrada no encontrada
+
+  /api/entradas/uuid/{uuid}:
+    get:
+      summary: Consultar entrada por UUID
+      operationId: getEntradaByUuid
+      tags: [entradas]
+      security: [{bearerAuth: []}]
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Entrada encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entrada'
+        '404':
+          description: Entrada no encontrada
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Entrada:
+      type: object
+      properties:
+        id: {type: integer}
+        nombre: {type: string}
+        escuela: {type: string}
+        usada: {type: integer, enum: [0, 1]}
+        uuid: {type: string}
+    EntradaCreate:
+      type: object
+      required: [nombre, escuela]
+      properties:
+        nombre: {type: string, minLength: 1}
+        escuela: {type: string, minLength: 1}
+    EntradaUpdate:
+      type: object
+      properties:
+        nombre: {type: string, minLength: 1}
+        escuela: {type: string, minLength: 1}
+        usada: {type: integer, enum: [0, 1]}

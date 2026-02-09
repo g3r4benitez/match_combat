@@ -13,6 +13,7 @@ IS_DEBUG: bool = _config("IS_DEBUG", cast=bool, default=False)
 
 DB_URL: str = _config("DB_URL", cast=str, default="sqlite:///./app/sql_app.db")
 CHANNELS: str = "sms,email,push"
+NOMBRE_EVENTO: str = _config("NOMBRE_EVENTO", cast=str, default="Match Combat")    
 
 
 def get_celery_broker_url():

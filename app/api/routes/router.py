@@ -20,10 +20,21 @@ api_router.include_router(
     dependencies=[Depends(get_current_user)],
 )
 api_router.include_router(
+    modalidad.router_public,
+    tags=["modalidad"],
+    prefix="/api/modalidad",
+    #dependencies=[Depends(get_current_user)],
+)
+api_router.include_router(
     modalidad.router,
     tags=["modalidad"],
     prefix="/api/modalidad",
     dependencies=[Depends(get_current_user)],
+)
+api_router.include_router(
+    match.router_public,
+    tags=["match"],
+    prefix="/api/match",
 )
 api_router.include_router(
     match.router,

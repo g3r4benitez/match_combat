@@ -7,6 +7,7 @@ from app.core.database import get_session
 from app.exceptions.general_exeptions import InternalServerError
 
 router = APIRouter()
+router_public = APIRouter()
 
 @router.post("/", response_model=Modalidad)
 def create_modalidad(modalidad: Modalidad, session: Session = Depends(get_session)):
@@ -17,7 +18,7 @@ def create_modalidad(modalidad: Modalidad, session: Session = Depends(get_sessio
         raise InternalServerError(message="Can't create modalidad")
 
 
-@router.get("/")
+@router_public.get("/")
 def get_modalidades(session: Session = Depends(get_session)):
     modalidad_service = ModalidadService(session)
     try:

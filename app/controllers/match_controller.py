@@ -12,6 +12,7 @@ from app.services.match_service import delete_match as delete_match_service, sor
 
 
 router = APIRouter()
+router_public = APIRouter()
 
 @router.post("/")
 def search_oponents(criterios: CriteriosDTO,  session: Session = Depends(get_session)):
@@ -30,7 +31,7 @@ def crear_match(match_data: MatchCreateDTO, session: Session = Depends(get_sessi
 def get_matchs(session: Session = Depends(get_session)):
     return get_all_matchs(session)
 
-@router.get("/pending")
+@router_public.get("/pending")
 def get_matchs_pending(session: Session = Depends(get_session)):
     return get_all_matchs_pending(session)
 

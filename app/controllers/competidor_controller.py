@@ -60,32 +60,36 @@ async def importar_competidores(file: UploadFile = File(...), session: Session =
     df = pd.read_csv(csv_data)
 
     # Validar que el CSV tiene las columnas necesarias
-    required_columns = {"edad", "peso", "modalidad_id", "sexo_id"}
-    if not required_columns.issubset(df.columns):
-        raise HTTPException(status_code=400, detail=f"El archivo CSV debe contener las columnas: {required_columns}")
+    required_columns = {"nombre", "edad", "peso", "modalidad_id", "sexo_id", "escuela", "historial", "historial_str", "comentarios"}
+    print("dfcolumns:", df.columns)
+    #if not required_columns.issubset(df.columns):
+    #    raise HTTPException(status_code=400, detail=f"El archivo CSV debe contener las columnas: {required_columns}")
 
     # Iniciar una sesión de base de datos
     # with Session(engine) as session:
     competidores = []
+    print("Importando competidores desde CSV...")
 
     # Iterar sobre cada fila del DataFrame y crear Competidor
     for _, row in df.iterrows():
         competidor = Competidor(
             nombre=row["nombre"],
-            edad=row["edad"],
-            peso=row["peso"],
-            modalidad_id=row["modalidad_id"],
-            sexo_id=row["sexo_id"],
+            edad=int(row["edad"]),
+            peso=float(row["peso"]),
+            modalidad_id=int(row["modalidad_id"]),
+            sexo_id=int(row["sexo_id"]),
             escuela=row["escuela"],
-            historial=row['historial'],
-            historial_str=row['historial_str'],
-            comentarios=row['comentarios']
+            historial=int(row['historial']) if pd.notna(row['historial']) else 0,
+            historial_str=str(row['historial_str']) if pd.notna(row['historial_str']) else None,
+            comentarios=str(row['comentarios']) if pd.notna(row['comentarios']) else None
         )
         competidores.append(competidor)
+        print(f"Competidor importado: {competidor.nombre}")
 
     # Agregar los competidores a la sesión
     session.add_all(competidores)
     session.commit()
+    print(f"Total de competidores importados: {len(competidores)}")
 
     return {"message": f"Se han importado {len(competidores)} competidores correctamente"}
 

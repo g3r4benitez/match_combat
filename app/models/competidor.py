@@ -24,8 +24,8 @@ class Competidor(SQLModel, table=True):
     sexo: Optional[Sexo] = Relationship(back_populates="competidores")
     matched: bool = Field(default=False)
     historial: int
-    historial_str: str
-    comentarios: str
+    historial_str: Optional[str] = None
+    comentarios: Optional[str] = None
 
     matches_como_primero: List["Match"] = Relationship(
         sa_relationship_kwargs={"primaryjoin": "Match.competidor_1_id==Competidor.id"}, back_populates="competidor_1")

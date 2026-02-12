@@ -52,6 +52,10 @@ docker-compose up
 pm2 start ./.venv/bin/uvicorn --name "match-combat" -- app.main:app --host 0.0.0.0 --port 9009
 
 
+### RUN IN PRODUCTION
+
+pm2 start ecosystem.config.js --env production
+
 ```
 
 ### Logs

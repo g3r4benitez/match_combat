@@ -10,7 +10,7 @@ class EntradaService:
         self.session = session
 
     def get_all(self) -> list[Entrada]:
-        statement = select(Entrada)
+        statement = select(Entrada).order_by(Entrada.usada.asc())
         results = self.session.exec(statement)
         return results.all()
 

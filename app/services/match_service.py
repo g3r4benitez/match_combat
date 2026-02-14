@@ -69,7 +69,7 @@ def get_all_matchs_pending(session: Session):
 def export_all_matchs_to_csv(session: Session):
     """On this function I want to export the list of matchs to csv"""
     statement = select(Match)
-    statement = statement.order_by(Match.orden.asc())
+    statement = statement.order_by(Match.orden.desc())
     results = session.exec(statement)
 
     output = io.StringIO()

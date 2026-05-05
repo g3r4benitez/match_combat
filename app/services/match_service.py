@@ -40,17 +40,35 @@ def registrar_match(session: Session, match_data: MatchCreateDTO):
     return nuevo_match
 
 def get_all_matchs(session: Session):
-    statement = (select(Match).order_by(Match.orden.desc()))
+    statement = (select(Match)
+                 .order_by(Match.orden.desc())
+                 .where(Match.completada == False)
+                 )
     results = session.exec(statement)
-    matchs = []
+    matchs = {}
     for r in results:
-        matchs.append({
-            'id': r.id,
-            'competidor_1: ': r.competidor_1,
-            'competidor_2: ': r.competidor_2,
-            'orden': r.orden, 
-            'completada': r.completada
-        })
+        matchs[r.orden] = {
+                'id': r.id,
+                'competidor_1: ': r.competidor_1,
+                'competidor_2: ': r.competidor_2,
+                'completada': r.completada
+            }
+    return matchs
+
+def get_active_and_ordered(session: Session):
+    statement = (select(Match)
+                 .order_by(Match.orden.desc())
+                 .where(Match.completada == False)
+                 )
+    results = session.exec(statement)
+    matchs = {}
+    for r in results:
+        matchs[r.orden] = {
+                'id': r.id,
+                'competidor_1: ': r.competidor_1,
+                'competidor_2: ': r.competidor_2,
+                'completada': r.completada
+            }
     return matchs
 
 def get_all_matchs_pending(session: Session):

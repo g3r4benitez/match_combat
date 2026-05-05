@@ -19,7 +19,7 @@ module.exports = {
         ADMIN_USERNAME: "admin",
         ADMIN_PASSWORD: "changeme123",
         ADMIN_EMAIL: "admin@matchcombat.local",
-        NOMBRE_EVENTO: "BATTLE OF BEASTS 15/02/2026"
+        NOMBRE_EVENTO: "ASCENSO - 14 DE JUNIO 2026"
       }
     }]
   }

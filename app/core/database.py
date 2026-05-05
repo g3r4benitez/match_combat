@@ -7,7 +7,7 @@ from app.models.user import User, TokenBlacklist, PasswordResetToken
 from app.core.logger import logger
 from app.core.config import DB_URL
 
-engine = create_engine(DB_URL, echo=True)
+engine = create_engine(DB_URL, echo=True, connect_args={"check_same_thread": False})
 
 def init_db():
     print("Executing init db")

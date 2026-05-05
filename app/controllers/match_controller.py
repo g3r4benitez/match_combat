@@ -8,7 +8,7 @@ from app.models.criterios import CriteriosDTO
 from app.models.competidor import Match
 from app.entities.match_entities import MatchCreateDTO, SortData
 from app.services.match_service import registrar_match, get_matchs_by_modalidad_id, get_all_matchs, export_all_matchs_to_csv
-from app.services.match_service import delete_match as delete_match_service, sort_match, get_all_matchs_pending, cambiar_estado_match
+from app.services.match_service import delete_match as delete_match_service, sort_match, get_all_matchs_pending, cambiar_estado_match, get_active_and_ordered
 
 
 router = APIRouter()
@@ -29,7 +29,8 @@ def crear_match(match_data: MatchCreateDTO, session: Session = Depends(get_sessi
 
 @router.get("/")
 def get_matchs(session: Session = Depends(get_session)):
-    return get_all_matchs(session)
+    return get_active_and_ordered(session)
+
 
 @router_public.get("/pending")
 def get_matchs_pending(session: Session = Depends(get_session)):

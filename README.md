@@ -44,13 +44,27 @@ docker-compose up
    source .env
    set +a
    uvicorn app.main:app --host 0.0.0.0 --port 9009 --reload
+
+   # opcional para correr procesos segun el número de procesadores
+   gunicorn -w $(nproc) -k uvicorn.workers.UvicornWorker main:app
    
    ```
 
-### Option 3: run using pm2
-   ```
-pm2 start ./.venv/bin/uvicorn --name "match-combat" -- app.main:app --host 0.0.0.0 --port 9009
+### Backup de la db
+en el servidor
+```
+   pg_dump -h 0.0.0.0 -p 5432 -U match_user match_db > backup_match_combat_16-feb-2026.sql
+```
 
+### Restaurar Backup
+```
+psql -h 0.0.0.0 -p 5432 -U match_user -d match_db -f backup_match_combat_16-feb-2026.sql
+```
+
+### Option 3: run using pm2
+```
+pm2 start ./.venv/bin/uvicorn --name "match-combat" -- app.main:app --host 0.0.0.0 --port 9009
+```
 
 ### RUN IN PRODUCTION
 

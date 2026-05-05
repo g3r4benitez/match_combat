@@ -12,7 +12,7 @@ module.exports = {
       watch: false,
       env_production: {
         NODE_ENV: "production",
-        DB_URL: "postgresql+psycopg2://match_user:match_password@localhost:5432/match_db",
+        DB_URL: "sqlite:///./match_combat.db",
         JWT_SECRET_KEY: "dev-secret-key-change-in-production",
         JWT_ACCESS_TOKEN_EXPIRE_MINUTES: 30,
         JWT_REFRESH_TOKEN_EXPIRE_DAYS: 7,

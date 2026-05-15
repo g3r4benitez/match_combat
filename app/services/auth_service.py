@@ -39,17 +39,17 @@ def authenticate_user(username: str, password: str, session: Session) -> User:
     if not user.is_active:
         raise UnauthorizedException(message="Account is inactive")
 
-    if (
-        user.failed_login_attempts >= LOCKOUT_THRESHOLD
-        and user.last_failed_login_at
-        and (datetime.utcnow() - user.last_failed_login_at)
-        < timedelta(minutes=LOCKOUT_DURATION_MINUTES)
-    ):
-        raise HTTPCustomException(
-            status_code=423,
-            msg="Account locked. Try again later.",
-            type_value="locked",
-        )
+    #if (
+    #    user.failed_login_attempts >= LOCKOUT_THRESHOLD
+    #    and user.last_failed_login_at
+    #    and (datetime.utcnow() - user.last_failed_login_at)
+    #    < timedelta(minutes=LOCKOUT_DURATION_MINUTES)
+    #):
+    #    raise HTTPCustomException(
+    #        status_code=423,
+    #        msg="Account locked. Try again later.",
+    #        type_value="locked",
+    #    )
 
     if not verify_password(password, user.hashed_password):
         user.failed_login_attempts += 1

@@ -35,7 +35,7 @@ def get_competidores_without_match(session: Session = Depends(get_session)):
         raise InternalServerError(message=f"Can't get competidores: {e}")
 
 @router.post("/", response_model=Competidor)
-def create_user(competidor: Competidor, session: Session = Depends(get_session)):
+def create_competidor(competidor: Competidor, session: Session = Depends(get_session)):
     competidor_service = CompetidorService(session)
     try:
         return competidor_service.create_competidor(competidor)
@@ -92,6 +92,12 @@ async def importar_competidores(file: UploadFile = File(...), session: Session =
     print(f"Total de competidores importados: {len(competidores)}")
 
     return {"message": f"Se han importado {len(competidores)} competidores correctamente"}
+
+
+@router.patch("/{id}")
+def update_competidor(id: int, competidor: Competidor, session: Session = Depends(get_session)):
+    competidor_service = CompetidorService(session)
+    return competidor_service.update(id, competidor)
 
 
 @router.get("/{competidor_id}")

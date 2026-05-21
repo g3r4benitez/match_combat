@@ -108,6 +108,20 @@ class CompetidorService:
         results = self.session.exec(statement)
         return results.all()
     
+    def update(self, competidor_id: int, data: Competidor) -> Competidor:
+        competidor = self.session.get(Competidor, competidor_id)
+        if not competidor:
+            raise HTTPException(status_code=404, detail=f'Competidor con id {competidor_id} no encontrado')
+
+        update_data = data.model_dump(exclude_unset=True, exclude={"id"})
+        for key, value in update_data.items():
+            setattr(competidor, key, value)
+
+        self.session.add(competidor)
+        self.session.commit()
+        self.session.refresh(competidor)
+        return competidor
+
     def delete(self, competidor_id: int, session: Session):
         competidor = session.get(Competidor, competidor_id)
         if not competidor:

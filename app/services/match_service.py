@@ -1,6 +1,6 @@
 import csv
 import io
-from sqlmodel import Session, select
+from sqlmodel import Session, select, desc
 from fastapi import HTTPException
 
 from app.models.competidor import Competidor
@@ -41,7 +41,7 @@ def registrar_match(session: Session, match_data: MatchCreateDTO):
 
 def get_all_matchs(session: Session):
     statement = (select(Match)
-                 .order_by(Match.orden.desc())
+                 .order_by(desc(Match.orden))
                  .where(Match.completada == False)
                  )
     results = session.exec(statement)
@@ -57,22 +57,42 @@ def get_all_matchs(session: Session):
 
 def get_active_and_ordered(session: Session):
     statement = (select(Match)
-                 .order_by(Match.orden.desc())
-                 .where(Match.completada == False)
+                 .order_by(desc(Match.orden))
+                 #.where(Match.completada == False)
                  )
     results = session.exec(statement)
-    matchs = {}
+    matchs = []
     for r in results:
-        matchs[r.orden] = {
-                'id': r.id,
-                'competidor_1: ': r.competidor_1,
-                'competidor_2: ': r.competidor_2,
-                'completada': r.completada
-            }
+        matchs.append({
+            'id': r.id,
+            'competidor_1: ': r.competidor_1,
+            'competidor_2: ': r.competidor_2,
+            'completada': r.completada,
+            'orden': r.orden
+        })
     return matchs
+    
+    #for r in results:
+        #matchs[r.orden] = {
+        #        'id': r.id,
+        #        'competidor_1: ': r.competidor_1,
+        #        'competidor_2: ': r.competidor_2,
+        #        'completada': r.completada
+        #    }
+     #   matchs.append({
+     #           'id': r.id,
+     #           'competidor_1: ': r.competidor_1,
+     #          'competidor_2: ': r.competidor_2,
+     #           'completada': r.completada
+     #       })
+        
+     #return matchs
 
 def get_all_matchs_pending(session: Session):
-    statement = (select(Match).where(Match.completada == False).order_by(Match.orden.asc())).limit(20)
+    statement = (select(Match)
+                 .order_by(desc(Match.orden))
+                 .where(Match.completada == False)
+                 )#.limit(20)
     results = session.exec(statement)
     matchs = []
     for r in results:
@@ -86,7 +106,7 @@ def get_all_matchs_pending(session: Session):
 
 def export_all_matchs_to_csv(session: Session):
     """On this function I want to export the list of matchs to csv"""
-    statement = (select(Match).order_by(Match.orden.desc()))
+    statement = (select(Match).order_by(desc(Match.orden)))
     results = session.exec(statement)
     results = session.exec(statement)
 

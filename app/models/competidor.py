@@ -26,6 +26,7 @@ class Competidor(SQLModel, table=True):
     historial: int
     historial_str: Optional[str] = None
     comentarios: Optional[str] = None
+    #pago: bool = Field(default=False)
 
     matches_como_primero: List["Match"] = Relationship(
         sa_relationship_kwargs={"primaryjoin": "Match.competidor_1_id==Competidor.id"}, back_populates="competidor_1")

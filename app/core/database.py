@@ -17,7 +17,7 @@ def init_db():
     from alembic import command
 
     alembic_cfg = Config(str(Path(__file__).resolve().parent.parent.parent / "alembic.ini"))
-    command.upgrade(alembic_cfg, "head")
+    #command.upgrade(alembic_cfg, "head")
     print("init db ended")
 
 def seed_admin():

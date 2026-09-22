@@ -25,7 +25,7 @@ def get_database_url():
     """Generate the database url from the environment."""
     return f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-DB_URL: str = get_database_url()
+DB_URL: str = _config("DB_URL", cast=str, default=get_database_url())
 
 
 # JWT

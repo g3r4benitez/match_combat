@@ -12,12 +12,12 @@ engine = create_engine(DB_URL, echo=True)
 
 def init_db():
     print("Executing init db")
-    #from alembic.config import Config
+    from alembic.config import Config
 
-    #from alembic import command
+    from alembic import command
 
-    #alembic_cfg = Config(str(Path(__file__).resolve().parent.parent.parent / "alembic.ini"))
-    #command.upgrade(alembic_cfg, "head")
+    alembic_cfg = Config(str(Path(__file__).resolve().parent.parent.parent / "alembic.ini"))
+    command.upgrade(alembic_cfg, "head")
 
 def seed_admin():
     from app.core.config import ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_USERNAME

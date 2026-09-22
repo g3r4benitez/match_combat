@@ -40,7 +40,7 @@ def create_competidor(competidor: Competidor, session: Session = Depends(get_ses
     try:
         return competidor_service.create_competidor(competidor)
     except Exception as e:
-        raise InternalServerError(message="Can't create competidor")
+        raise InternalServerError(message=f"Can't create competidor: {e}")
 
 
 @router.delete("/{id}")

@@ -18,5 +18,14 @@ __pycache__
 
 #Environment files
 .env
+.env.*
 PRODUCTION.MD
 sql_app.db
+
+#Python
+venv/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/

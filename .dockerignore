@@ -14,6 +14,7 @@ logs/
 .specify/
 specs/
 .claude/
+.opencode/
 *.md
 .dockerignore
 Dockerfile

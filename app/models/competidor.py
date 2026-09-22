@@ -1,5 +1,9 @@
-from typing import Optional, List
+from typing import TYPE_CHECKING, List, Optional
 from sqlmodel import Field, SQLModel, Relationship
+
+if TYPE_CHECKING:
+    from app.models.evento import Evento
+    from app.models.area import Area
 
 class Sexo(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -9,6 +13,8 @@ class Sexo(SQLModel, table=True):
 class Modalidad(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
+    evento_id: Optional[int] = Field(default=None, foreign_key="evento.id")
+    evento: Optional["Evento"] = Relationship(back_populates="modalidades")
     competidores: List["Competidor"] = Relationship(back_populates="modalidad")
     matchs: List["Match"] = Relationship(back_populates="modalidad")
 
@@ -18,6 +24,8 @@ class Competidor(SQLModel, table=True):
     edad: int
     peso: float
     escuela: str
+    evento_id: Optional[int] = Field(default=None, foreign_key="evento.id")
+    evento: Optional["Evento"] = Relationship(back_populates="competidores")
     modalidad_id: Optional[int] = Field(default=None, foreign_key="modalidad.id")
     modalidad: Optional[Modalidad] = Relationship(back_populates="competidores")
     sexo_id: Optional[int] = Field(default=None, foreign_key="sexo.id")
@@ -47,6 +55,10 @@ class Match(SQLModel, table=True):
 
     modalidad_id: Optional[int] = Field(default=None, foreign_key="modalidad.id")
     modalidad: Optional[Modalidad] = Relationship(back_populates="matchs")
+    evento_id: Optional[int] = Field(default=None, foreign_key="evento.id")
+    evento: Optional["Evento"] = Relationship(back_populates="matchs")
+    area_id: Optional[int] = Field(default=None, foreign_key="area.id")
+    area: Optional["Area"] = Relationship(back_populates="matchs")
     comentarios: Optional[str] = Field(default="")
     orden: Optional[int] = Field(default=0)
     completada: Optional[bool] = Field(default=False)

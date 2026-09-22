@@ -21,6 +21,8 @@ def registrar_match(session: Session, match_data: MatchCreateDTO):
         competidor_1_id=match_data.competidor_1_id,
         competidor_2_id=match_data.competidor_2_id,
         modalidad_id=match_data.modalidad_id,
+        area_id=match_data.area_id,
+        evento_id=match_data.evento_id,
         resultado=match_data.resultado,
     )
 
@@ -49,6 +51,7 @@ def get_all_matchs(session: Session):
     for r in results:
         matchs[r.orden] = {
                 'id': r.id,
+                'area_id': r.area_id,
                 'competidor_1: ': r.competidor_1,
                 'competidor_2: ': r.competidor_2,
                 'completada': r.completada
@@ -65,6 +68,7 @@ def get_active_and_ordered(session: Session):
     for r in results:
         matchs.append({
             'id': r.id,
+            'area_id': r.area_id,
             'competidor_1: ': r.competidor_1,
             'competidor_2: ': r.competidor_2,
             'completada': r.completada,
@@ -98,6 +102,8 @@ def get_all_matchs_pending(session: Session):
     for r in results:
         matchs.append({
             'id': r.id,
+            'area_id': r.area_id,
+            'evento_id': r.evento_id,
             'competidor_1: ': r.competidor_1,
             'competidor_2: ': r.competidor_2,
             'orden': r.orden

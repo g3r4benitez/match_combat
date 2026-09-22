@@ -1,23 +1,23 @@
 <!--
   Sync Impact Report
   ===================================================================
-  Version change: N/A (initial) → 1.0.0
-  Modified principles: N/A (first ratification)
+  Version change: 1.0.0 → 1.1.0
+  Modified principles: N/A
   Added sections:
-    - Core Principles (5 principles)
-    - Technical Constraints
-    - Development Workflow
-    - Governance
+    - Project Overview (project purpose and scope description)
   Removed sections: None
-  Templates requiring updates:
-    - .specify/templates/plan-template.md ✅ reviewed (no changes needed)
-    - .specify/templates/spec-template.md ✅ reviewed (no changes needed)
-    - .specify/templates/tasks-template.md ✅ reviewed (no changes needed)
   Follow-up TODOs: None
   ===================================================================
 -->
 
 # Match Combat Constitution
+
+## Project Overview
+
+API created with FastAPI to manage the operation of a contact sport
+event. It enables creating competitors and modalidades, searching for
+opponents, registering fights, ordering them, marking them as completed,
+and defining different competition areas, among other operational tasks.
 
 ## Core Principles
 
@@ -115,4 +115,4 @@ code, and a version bump following semantic versioning:
 self-check against the Core Principles. Violations MUST be
 documented in a Complexity Tracking table with justification.
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-29 | **Last Amended**: 2026-01-29
+**Version**: 1.1.0 | **Ratified**: 2026-01-29 | **Last Amended**: 2026-09-20

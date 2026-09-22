@@ -9,6 +9,7 @@ from fastapi import HTTPException
 from app.core.logger import logger
 from app.models.criterios import CriteriosDTO
 from app.models.competidor import Competidor, Match
+from app.models.evento import Evento
 from app.core.database import engine
 
 modalidades = {
@@ -70,6 +71,11 @@ class CompetidorService:
         return results.all()
 
     def create_competidor(self, competidor: Competidor) -> Competidor:
+        evento = self.session.exec(
+            select(Evento).where(Evento.activo==True)
+        ).first()
+        competidor.evento = evento
+
         if competidor.id == 0:
             competidor.id = None
 
@@ -104,6 +110,8 @@ class CompetidorService:
             statement = statement.where(
                 Competidor.peso.between(peso_minimo, peso_maximo)
             )
+
+        print(f"statement: {statement}")
 
         results = self.session.exec(statement)
         return results.all()

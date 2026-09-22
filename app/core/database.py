@@ -18,6 +18,7 @@ def init_db():
 
     alembic_cfg = Config(str(Path(__file__).resolve().parent.parent.parent / "alembic.ini"))
     command.upgrade(alembic_cfg, "head")
+    print("init db ended")
 
 def seed_admin():
     from app.core.config import ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_USERNAME

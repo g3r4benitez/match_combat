@@ -8,40 +8,31 @@ from fastapi import HTTPException
 
 from app.core.logger import logger
 from app.models.criterios import CriteriosDTO
-from app.models.competidor import Competidor, Match
+from app.models.competidor import Competidor, Match, Modalidad, Sexo
 from app.models.evento import Evento
 from app.core.database import engine
 
-modalidades = {
-    1: "Kick Exhibicion",
-    2:"Kick Amateur",
-    3:"Box Exhibicion",
-    4:"Box Amateur",
-    5: "Full Exhibicion",
-    6: "Full Amateur",
-    7: "Muay Thai Exhibicion",
-    8: "Muay Thai Amateur",
-}
 
 
 def export_all_competitors_to_csv(session: Session):
         """On this function I want to export the list of competidores to csv"""
         statement = (select(Competidor)
-                    .order_by(Competidor.escuela))
+                     .join(Modalidad)
+                    .order_by(Modalidad.name, Competidor.escuela))
         results = session.exec(statement)
 
         output = io.StringIO()
         writer = csv.writer(output)
-        writer.writerow(['#', 'Nombre', 'Edad', 'Peso', 'Modalidad', 'Sexo', 'tiene_oponente?', 'Escuela', 'historial', 'Comentarios' ])
+        writer.writerow(['#', 'Nombre','Sexo', 'Edad',  'Peso', 'Modalidad', 'tiene_oponente?', 'Escuela', 'historial', 'Comentarios' ])
 
         for competidor in results:
             writer.writerow([
                 competidor.id,
                 competidor.nombre,
+                competidor.sexo.name,
                 competidor.edad,
                 competidor.peso,
-                modalidades[competidor.modalidad_id],
-                'M' if competidor.sexo_id else 'F',
+                competidor.modalidad.name,
                 'Si' if competidor.matched else 'No',
                 competidor.escuela,
                 competidor.historial_str,

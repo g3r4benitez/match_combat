@@ -118,7 +118,7 @@ def export_all_matchs_to_csv(session: Session):
 
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(['id', 'Peleador 1', 'historial', 'Escuela', 'Peleador 2', 'historial', 'Escuela', 'modalidad_id', 'comentarios'])
+    writer.writerow(['id', 'Peleador 1', 'historial', 'Escuela', 'Peleador 2', 'Historial', 'Escuela', 'Modalidad', 'Comentarios'])
 
     for match in results:
         writer.writerow([

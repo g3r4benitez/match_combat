@@ -19,7 +19,7 @@ module.exports = {
         ADMIN_USERNAME: "admin",
         ADMIN_PASSWORD: "changeme123",
         ADMIN_EMAIL: "admin@matchcombat.local",
-        NOMBRE_EVENTO: "Beast Wars - 17 de Octubre 2026"
+        NOMBRE_EVENTO: "Beast Wars - 17 de Octubre 2026."
       }
     }]
   }

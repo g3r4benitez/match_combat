@@ -12,14 +12,14 @@ module.exports = {
       watch: false,
       env_production: {
         NODE_ENV: "production",
-        DB_URL: "sqlite:///./match_combat.db",
+        DB_URL: "postgresql://match_user:match_password@localhost:5432/match_combat",
         JWT_SECRET_KEY: "dev-secret-key-change-in-production",
         JWT_ACCESS_TOKEN_EXPIRE_MINUTES: 30,
         JWT_REFRESH_TOKEN_EXPIRE_DAYS: 7,
         ADMIN_USERNAME: "admin",
         ADMIN_PASSWORD: "changeme123",
         ADMIN_EMAIL: "admin@matchcombat.local",
-        NOMBRE_EVENTO: "ASCENSO - 14 DE JUNIO 2026"
+        NOMBRE_EVENTO: "Beast Wars - 17 de Octubre 2026"
       }
     }]
   }

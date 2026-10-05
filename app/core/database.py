@@ -4,9 +4,9 @@ from sqlmodel import Session, create_engine, select
 
 from app.core.config import DB_URL
 from app.core.logger import logger
+from app.models.competidor import Sexo
 from app.models.evento import Evento
 from app.models.user import User
-from app.models.competidor import Sexo
 
 engine = create_engine(DB_URL, echo=True)
 
@@ -17,7 +17,8 @@ def init_db():
     from alembic import command
 
     alembic_cfg = Config(str(Path(__file__).resolve().parent.parent.parent / "alembic.ini"))
-    #command.upgrade(alembic_cfg, "head")
+    command.upgrade(alembic_cfg, "head")
+    logger.info("Database migrations completed")
     print("init db ended")
 
 def seed_admin():

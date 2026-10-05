@@ -58,16 +58,18 @@ def get_all_matchs(session: Session):
             }
     return matchs
 
-def get_active_and_ordered(session: Session):
+def get_active_and_ordered(area_id: int, session: Session):
     statement = (select(Match)
                  .order_by(desc(Match.orden))
                  #.where(Match.completada == False)
+                 .where(Match.area_id==area_id)
                  )
     results = session.exec(statement)
     matchs = []
     for r in results:
         matchs.append({
             'id': r.id,
+            'area': r.area.nombre,
             'area_id': r.area_id,
             'competidor_1: ': r.competidor_1,
             'competidor_2: ': r.competidor_2,
@@ -75,22 +77,6 @@ def get_active_and_ordered(session: Session):
             'orden': r.orden
         })
     return matchs
-    
-    #for r in results:
-        #matchs[r.orden] = {
-        #        'id': r.id,
-        #        'competidor_1: ': r.competidor_1,
-        #        'competidor_2: ': r.competidor_2,
-        #        'completada': r.completada
-        #    }
-     #   matchs.append({
-     #           'id': r.id,
-     #           'competidor_1: ': r.competidor_1,
-     #          'competidor_2: ': r.competidor_2,
-     #           'completada': r.completada
-     #       })
-        
-     #return matchs
 
 def get_all_matchs_pending(session: Session):
     statement = (select(Match)
@@ -206,14 +192,14 @@ def sort_match(sort_data: SortData, session: Session):
     match = session.get(Match, sort_data.match_id)
     
     try:
+        # Actualizar el orden de todas las peleas que tenga el mismo orden u orden superior
+        statement = update(Match).where(Match.orden >= sort_data.orden).where(Match.area_id==sort_data.area_id).values(orden=Match.orden + 1)
+        session.exec(statement)
+
         match.orden = sort_data.orden
         session.add(match)
         session.commit()
         session.refresh(match)
-
-        # Actualizar el orden de todas las peleas que tenga el mismo orden u orden superior
-        statement = update(Match).where(Match.orden >= sort_data.orden).values(orden=Match.orden + 1)
-        session.exec(statement)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"No se pudo actualizar el orden del match por que: '{e}'")

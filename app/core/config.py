@@ -25,8 +25,8 @@ def get_database_url():
     """Generate the database url from the environment."""
     return f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-DB_URL: str = _config("DB_URL", cast=str, default=get_database_url())
-
+#DB_URL: str = _config("DB_URL", cast=str, default=get_database_url())
+DB_URL: str = get_database_url()
 
 # JWT
 JWT_SECRET_KEY: str = _config("JWT_SECRET_KEY", cast=str, default="change-this-secret-key-in-production")
@@ -39,3 +39,15 @@ PASSWORD_RESET_EXPIRE_HOURS: int = _config("PASSWORD_RESET_EXPIRE_HOURS", cast=i
 ADMIN_USERNAME: str = _config("ADMIN_USERNAME", cast=str, default="admin")
 ADMIN_PASSWORD: str = _config("ADMIN_PASSWORD", cast=str, default="changeme123")
 ADMIN_EMAIL: str = _config("ADMIN_EMAIL", cast=str, default="admin@matchcombat.local")
+
+# SMTP (optional - password reset emails)
+SMTP_HOST: str = _config("SMTP_HOST", cast=str, default="")
+SMTP_PORT: str = _config("SMTP_PORT", cast=str, default="")
+SMTP_USER: str = _config("SMTP_USER", cast=str, default="")
+SMTP_PASSWORD: str = _config("SMTP_PASSWORD", cast=str, default="")
+SMTP_FROM_EMAIL: str = _config("SMTP_FROM_EMAIL", cast=str, default="")
+SMTP_USE_TLS: bool = _config("SMTP_USE_TLS", cast=bool, default=True)
+
+# S3 (sponsors PDF footer image)
+AWS_REGION: str = _config("AWS_REGION", cast=str, default="us-east-1")
+S3_SPONSORS_BUCKET: str = _config("S3_SPONSORS_BUCKET", cast=str, default="")

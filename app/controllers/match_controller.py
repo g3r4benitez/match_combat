@@ -27,9 +27,11 @@ def crear_match(match_data: MatchCreateDTO, session: Session = Depends(get_sessi
     # Llama al servicio para registrar el partido
     return registrar_match(session, match_data)
 
-@router.get("/")
-def get_matchs(session: Session = Depends(get_session)):
-    return get_active_and_ordered(session)
+@router.get("/get-matchs-by-area/{area_id}")
+def get_matchs(area_id: int, session: Session = Depends(get_session)):
+    print(20*"#")
+    print("area_id", area_id)
+    return get_active_and_ordered(area_id, session)
 
 
 @router_public.get("/pending")

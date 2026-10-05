@@ -11,5 +11,8 @@ RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY ./app app
+COPY ./alembic alembic
+COPY ./alembic.ini .
+COPY ./static static
 
 CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "9009"]

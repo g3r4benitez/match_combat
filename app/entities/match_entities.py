@@ -15,6 +15,7 @@ class MatchCreateDTO(BaseModel):
 class SortData(BaseModel):
     match_id: int
     orden: int
+    area_id: int
 
 
 class MatchUpdateDTO(BaseModel):

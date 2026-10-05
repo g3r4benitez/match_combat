@@ -2,13 +2,15 @@ import logging
 from io import BytesIO
 from pathlib import Path
 
+import boto3
 import segno
+from botocore.exceptions import ClientError
 from reportlab.lib.units import cm
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
+from app.core.config import AWS_REGION, NOMBRE_EVENTO, ROOT_DIR, S3_SPONSORS_BUCKET
 from app.models.entrada import Entrada
-from app.core.config import NOMBRE_EVENTO, ROOT_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +18,7 @@ PAGE_WIDTH = 5 * cm
 PAGE_HEIGHT = 10 * cm
 MARGIN = 0.3 * cm
 CONTENT_WIDTH = PAGE_WIDTH - 2 * MARGIN
-SPONSORS_IMAGE_PATH = Path(ROOT_DIR) / "static" / "images" / "sponsors.png"
+LOCAL_SPONSORS_PATH = Path(ROOT_DIR) / "static" / "images" / "sponsors.png"
 
 
 class EntradaPdfService:
@@ -82,9 +84,27 @@ class EntradaPdfService:
         qr_buffer.seek(0)
         return qr_buffer
 
+    def _load_sponsors_image(self) -> BytesIO | None:
+        if S3_SPONSORS_BUCKET:
+            try:
+                s3 = boto3.client("s3", region_name=AWS_REGION)
+                response = s3.get_object(Bucket=S3_SPONSORS_BUCKET, Key="sponsors.png")
+                buf = BytesIO(response["Body"].read())
+                buf.seek(0)
+                return buf
+            except ClientError as e:
+                logger.warning("Failed to download sponsors.png from S3: %s", e)
+        if LOCAL_SPONSORS_PATH.exists():
+            return BytesIO(LOCAL_SPONSORS_PATH.read_bytes())
+        logger.warning("No sponsors.png found in S3 or local filesystem")
+        return None
+
     def _draw_sponsors_footer(self, c: canvas.Canvas) -> float:
         try:
-            img = ImageReader(str(SPONSORS_IMAGE_PATH))
+            img_data = self._load_sponsors_image()
+            if img_data is None:
+                return 0.0
+            img = ImageReader(img_data)
             iw, ih = img.getSize()
             img_width = CONTENT_WIDTH
             img_height = CONTENT_WIDTH * (ih / iw)
@@ -92,8 +112,8 @@ class EntradaPdfService:
             y = MARGIN
             c.drawImage(img, x, y, width=img_width, height=img_height)
             return img_height
-        except Exception:
-            logger.warning("No se pudo cargar la imagen de sponsors: %s", SPONSORS_IMAGE_PATH)
+        except (OSError, ValueError, SyntaxError):
+            logger.warning("No se pudo cargar la imagen de sponsors")
             return 0.0
 
     def _fit_text(self, c: canvas.Canvas, text: str, font: str, size: float) -> str:

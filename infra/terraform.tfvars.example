@@ -1,0 +1,19 @@
+# Required (no defaults)
+jwt_secret_key = "CHANGE-ME-TO-A-LONG-RANDOM-STRING"
+admin_password = "CHANGE-ME-INITIAL-ADMIN-PASSWORD"
+
+# Optional (has defaults)
+# aws_region = "us-east-1"
+# project_name = "match-combat"
+# environment = "prod"
+# db_username = "match_user"
+# db_name = "match_combat"
+# db_instance_class = "db.t3.micro"
+# nombre_evento = "Match Combat"
+# is_debug = false
+# app_port = 9009
+# jwt_access_token_expire_minutes = 30
+# jwt_refresh_token_expire_days = 7
+# password_reset_expire_hours = 1
+# admin_username = "admin"
+# admin_email = "admin@matchcombat.local"

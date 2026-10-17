@@ -189,17 +189,26 @@ def sort_match(sort_data: SortData, session: Session):
     if not match:
         raise HTTPException(status_code=404, detail="Match no encontrado")
     
-    match = session.get(Match, sort_data.match_id)
     
     try:
-        # Actualizar el orden de todas las peleas que tenga el mismo orden u orden superior
-        statement = update(Match).where(Match.orden >= sort_data.orden).where(Match.area_id==sort_data.area_id).values(orden=Match.orden + 1)
-        session.exec(statement)
-
-        match.orden = sort_data.orden
-        session.add(match)
-        session.commit()
-        session.refresh(match)
+        # Traer todas las peleas ordenadas por orden
+        statement = select(Match)\
+            .where(Match.area_id == sort_data.area_id)\
+            .where(Match.id != sort_data.match_id)\
+            .order_by(Match.orden)
+        all_matches = session.exec(statement).all()
+        orden_actual = 0
+        for m in all_matches:
+            if orden_actual == sort_data.orden:
+                orden_actual += 1
+                match.orden = orden_actual
+                session.add(match)
+                session.commit()
+                
+            orden_actual += 1
+            m.orden = orden_actual
+            session.add(m)
+            session.commit()
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"No se pudo actualizar el orden del match por que: '{e}'")

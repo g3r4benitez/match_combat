@@ -1,0 +1,121 @@
+# Match Combat - nginx site configuration (Debian 13)
+#
+# Rendered by scripts/install-nginx-config.sh. Do not edit the installed copy:
+# edit this template and re-run the install script.
+#
+# Placeholders:
+#   __SERVER_IP__    LAN IP of the server (example: 192.168.1.46)
+#   __SERVER_NAME__  Space-separated nginx server_name values
+#   __CERT_DIR__     Directory that holds server.crt and server.key
+#
+# Topology:
+#   http://SERVER_IP            -> 301 https://SERVER_IP/...
+#   http://SERVER_IP/api/...    -> 301 https://SERVER_IP/api/...
+#   http://SERVER_IP:9009       -> 301 https://SERVER_IP/api
+#   http://SERVER_IP:9009/...   -> 301 https://SERVER_IP/...
+#   https://SERVER_IP/api/...   -> proxy to 127.0.0.1:9009/api/...
+#
+# The FastAPI application already mounts every route under /api, so the proxy
+# passes the original URI untouched.
+
+# ---------------------------------------------------------------------------
+# Port 80: force HTTPS
+# ---------------------------------------------------------------------------
+server {
+    listen 80;
+    server_name __SERVER_NAME__;
+
+    access_log /var/log/nginx/match-combat.access.log;
+    error_log  /var/log/nginx/match-combat.error.log warn;
+
+    return 308 https://$host$request_uri;
+}
+
+# ---------------------------------------------------------------------------
+# Port 443: TLS termination + reverse proxy to the FastAPI app
+# ---------------------------------------------------------------------------
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name __SERVER_NAME__;
+
+    access_log /var/log/nginx/match-combat.access.log;
+    error_log  /var/log/nginx/match-combat.error.log warn;
+
+    ssl_certificate     __CERT_DIR__/server.crt;
+    ssl_certificate_key __CERT_DIR__/server.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 1d;
+    ssl_session_tickets off;
+
+    # Enable once clients trust the local CA.
+    # add_header Strict-Transport-Security "max-age=31536000" always;
+
+    add_header X-Content-Type-Options nosniff always;
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    # PDF/CSV responses and JSON payloads are small; keep this generous but bounded.
+    client_max_body_size 25m;
+
+    server_tokens off;
+
+    # Root has no page: send users to the API entry point.
+    location = / {
+        return 302 https://$host/api;
+    }
+
+    location = /api {
+        return 301 https://$host/api/;
+    }
+
+    # API (the app itself serves /api/...).
+    location /api/ {
+        proxy_pass http://127.0.0.1:9009;
+        include /etc/nginx/snippets/match-combat-proxy-headers.conf;
+    }
+
+    # Interactive docs. Remove these blocks if docs must not be public.
+    location /docs {
+        proxy_pass http://127.0.0.1:9009;
+        include /etc/nginx/snippets/match-combat-proxy-headers.conf;
+    }
+
+    location /redoc {
+        proxy_pass http://127.0.0.1:9009;
+        include /etc/nginx/snippets/match-combat-proxy-headers.conf;
+    }
+
+    location = /openapi.json {
+        proxy_pass http://127.0.0.1:9009;
+        include /etc/nginx/snippets/match-combat-proxy-headers.conf;
+    }
+}
+
+# ---------------------------------------------------------------------------
+# Port 9009 on the LAN IP: redirect to HTTPS /api
+#
+# uvicorn listens on 127.0.0.1:9009 (loopback only), while nginx binds the LAN
+# IP on the same port. Both sockets coexist because the addresses differ.
+# ---------------------------------------------------------------------------
+server {
+    listen __SERVER_IP__:9009;
+    server_name __SERVER_NAME__;
+
+    access_log /var/log/nginx/match-combat-9009.access.log;
+    error_log  /var/log/nginx/match-combat-9009.error.log warn;
+
+    # Bare port -> API root.
+    location = / {
+        return 308 https://$host/api;
+    }
+
+    # Preserve the requested path, e.g. /api/ping -> https://host/api/ping.
+    location / {
+        return 308 https://$host$request_uri;
+    }
+}

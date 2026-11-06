@@ -28,6 +28,13 @@ sql_app.db
 .terraform/
 .terraform
 
+# Deployment artifacts (generated certificates and rendered configs)
+deploy/certs/
+deploy/nginx/match-combat.conf
+*.key
+*.csr
+*.srl
+
 #Python
 venv/
 dist/

@@ -99,14 +99,16 @@ command -v pm2 >/dev/null 2>&1 || die "PM2 is not available (set SKIP_NODE=0)"
 # 3. Python virtualenv
 #
 # Debian 13 ships Python 3.13, but the pinned dependencies (greenlet 3.0.3,
-# pandas 2.2.2) have no cp313 wheels. Use uv to provision Python 3.11 unless
-# the system interpreter is already 3.11/3.12.
+# pandas 2.2.2) have no cp313 wheels. Use the system interpreter only when it
+# is exactly the requested version (3.11 by default); otherwise provision that
+# version with uv. An existing virtualenv with another version is recreated.
 # ---------------------------------------------------------------------------
-system_python_is_supported() {
-    command -v python3 >/dev/null 2>&1 || return 1
-    python3 - <<'PY'
+venv_uses_requested_python() {
+    [ -x "$APP_DIR/.venv/bin/python" ] || return 1
+    "$APP_DIR/.venv/bin/python" - "$PYTHON_VERSION" <<'PY'
 import sys
-raise SystemExit(0 if sys.version_info[:2] <= (3, 12) else 1)
+want = tuple(int(part) for part in sys.argv[1].split(".")[:2])
+raise SystemExit(0 if sys.version_info[:2] == want else 1)
 PY
 }
 
@@ -114,8 +116,16 @@ log "Preparing Python ${PYTHON_VERSION} virtualenv"
 chown -R "$APP_USER:$APP_USER" "$APP_DIR"
 
 UV_BIN="$(command -v uv 2>/dev/null || true)"
-if [ ! -x "$APP_DIR/.venv/bin/python" ]; then
-    if system_python_is_supported && [ "$PYTHON_VERSION" = "3.11" ] && python3 -c 'import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 11) else 1)'; then
+if venv_uses_requested_python; then
+    log "Reusing existing virtualenv at $APP_DIR/.venv"
+else
+    if [ -d "$APP_DIR/.venv" ]; then
+        log "Existing virtualenv does not use Python ${PYTHON_VERSION}; recreating it"
+        rm -rf "$APP_DIR/.venv"
+    fi
+
+    if command -v python3 >/dev/null 2>&1 &&
+        python3 -c "import sys; raise SystemExit(0 if sys.version_info[:2] == tuple(int(p) for p in '${PYTHON_VERSION}'.split('.')[:2]) else 1)"; then
         sudo -u "$APP_USER" -H python3 -m venv "$APP_DIR/.venv"
     else
         if [ -z "$UV_BIN" ]; then
@@ -125,10 +135,8 @@ if [ ! -x "$APP_DIR/.venv/bin/python" ]; then
         fi
         [ -x "$UV_BIN" ] || die "uv installation failed"
         sudo -u "$APP_USER" -H "$UV_BIN" python install "$PYTHON_VERSION"
-        sudo -u "$APP_USER" -H "$UV_BIN" venv --python "$PYTHON_VERSION" "$APP_DIR/.venv"
+        sudo -u "$APP_USER" -H "$UV_BIN" venv --clear --python "$PYTHON_VERSION" "$APP_DIR/.venv"
     fi
-else
-    log "Reusing existing virtualenv at $APP_DIR/.venv"
 fi
 
 if [ -n "$UV_BIN" ] && [ -x "$APP_DIR/.venv/bin/python" ] && ! "$APP_DIR/.venv/bin/python" -m pip --version >/dev/null 2>&1; then
@@ -175,6 +183,16 @@ SERVER_IP="$SERVER_IP" SERVER_NAME="$SERVER_NAME" CERT_DIR="$CERT_DIR" \
 log "Registering PM2 with systemd"
 if ! pm2 startup systemd -u "$APP_USER" --hp "$APP_HOME"; then
     warn "pm2 startup failed; configure it manually with: pm2 startup systemd -u $APP_USER --hp $APP_HOME"
+fi
+
+if [ "$START_APP" = "1" ] && [ "$ENV_CREATED" = "1" ]; then
+    warn "START_APP=1 ignored: .env was just created. Edit it and start PM2 manually."
+    START_APP=0
+fi
+
+if [ "$START_APP" = "1" ] && grep -q 'CHANGE_ME_' "$APP_DIR/.env"; then
+    warn "START_APP=1 ignored: .env still contains CHANGE_ME_ placeholders."
+    START_APP=0
 fi
 
 if [ "$START_APP" = "1" ]; then

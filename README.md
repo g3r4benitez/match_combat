@@ -179,15 +179,23 @@ Variables disponibles:
 | `APP_USER` | `$SUDO_USER` | Usuario que ejecuta PM2 |
 | `CERT_DIR` | `/etc/nginx/ssl/match-combat` | Directorio de certificados |
 | `PYTHON_VERSION` | `3.11` | Versión del virtualenv |
-| `START_APP` | `0` | `1` arranca la API al finalizar |
+| `START_APP` | `0` | `1` arranca la API al finalizar (se ignora si `.env` acaba de crearse o contiene `CHANGE_ME_`) |
 | `SKIP_APT` | `0` | `1` omite `apt` |
 | `SKIP_NODE` | `0` | `1` omite Node.js/PM2 |
+
+> El bootstrap descarga el repositorio de NodeSource y el instalador de `uv`.
+> Si tu política no permite ejecutar instaladores remotos, instala Node.js,
+> PM2 y Python 3.11 por tu cuenta y vuelve a ejecutar con `SKIP_NODE=1`.
 
 Para arrancar la API en el mismo paso:
 
 ```bash
 sudo env SERVER_IP=192.168.1.46 START_APP=1 ./scripts/setup-production.sh
 ```
+
+> Si `.env` se acaba de crear o todavía contiene valores `CHANGE_ME_`, el
+> script ignora `START_APP=1` a propósito para no arrancar la API con
+> credenciales de ejemplo. Edita `.env` y arranca PM2 manualmente.
 
 ### 2. Variables de entorno
 
@@ -253,8 +261,10 @@ Genera en `/etc/nginx/ssl/match-combat`:
 | `server.crt` | Certificado del servidor |
 | `server.key` | Clave privada del servidor (`600`) |
 
-El SAN incluye `IP:192.168.1.46`, `IP:127.0.0.1`, `DNS:<SERVER_NAME>` y
-`DNS:localhost`. El script verifica la cadena con `openssl verify`.
+El SAN incluye `IP:192.168.1.46`, `IP:127.0.0.1`, `DNS:<primer valor de SERVER_NAME>`
+y `DNS:localhost`. Si `SERVER_NAME` tiene varios nombres separados por espacios,
+el certificado usa el primero como CN/SAN DNS y nginx los usa todos. El script
+verifica la cadena con `openssl verify`.
 
 **Confiar en la CA en los clientes** (evita el aviso del navegador):
 
@@ -271,7 +281,11 @@ Regenerar (los clientes deben volver a confiar en la nueva CA):
 
 ```bash
 sudo env SERVER_IP=192.168.1.46 FORCE=1 ./scripts/generate-certs.sh
+sudo systemctl reload nginx
 ```
+
+El `reload` es obligatorio: nginx mantiene en memoria el certificado anterior
+hasta que se recarga, aunque los archivos en disco ya sean los nuevos.
 
 > Si en el futuro usas un **dominio DNS** que apunte a esta IP, puedes usar
 > Let's Encrypt con `certbot` en lugar de la CA local.
@@ -329,7 +343,7 @@ Comandos de operación:
 | Ver estado | `pm2 status` |
 | Ver logs en vivo | `pm2 logs match-combat` |
 | Reiniciar | `pm2 restart match-combat --update-env` |
-| Recargar sin downtime | `pm2 reload match-combat --update-env` |
+| Recargar (con 1 instancia fork equivale a reiniciar el worker) | `pm2 reload match-combat --update-env` |
 | Detener | `pm2 stop match-combat` |
 | Eliminar | `pm2 delete match-combat` |
 | Guardar proceso actual | `pm2 save` |
@@ -412,9 +426,14 @@ git pull
 # o, si se instaló con uv:
 # uv pip install --python .venv/bin/python -r requirements.txt
 
-pm2 reload match-combat --update-env
+pm2 restart match-combat --update-env
 pm2 save
 ```
+
+> Con `instances: 1` y `exec_mode: "fork"`, PM2 no puede hacer un reload
+> rolling: `pm2 reload` y `pm2 restart` reinician el único worker y hay una
+> ventana breve de downtime (nginx responde `502`). Para cero downtime real
+> necesitarías balanceo con varios procesos o un segundo servidor.
 
 Las migraciones de base de datos se aplican solas al arrancar la aplicación.
 
@@ -430,6 +449,9 @@ Logs:
 
 > `/tmp/logs/app.log` es efímero: se pierde al reiniciar el servidor. Usa
 > `pm2 logs` o configura un colector de logs si necesitas retención.
+>
+> Los archivos `logs/pm2-*.log` no rotan por defecto. Instala el módulo de
+> rotación una vez: `pm2 install pm2-logrotate`.
 
 ### 10. Troubleshooting
 

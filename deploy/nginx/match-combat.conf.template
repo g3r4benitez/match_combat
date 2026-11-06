@@ -9,11 +9,19 @@
 #   __CERT_DIR__     Directory that holds server.crt and server.key
 #
 # Topology:
-#   http://SERVER_IP            -> 301 https://SERVER_IP/...
-#   http://SERVER_IP/api/...    -> 301 https://SERVER_IP/api/...
-#   http://SERVER_IP:9009       -> 301 https://SERVER_IP/api
-#   http://SERVER_IP:9009/...   -> 301 https://SERVER_IP/...
+#   http://SERVER_IP            -> 308 https://SERVER_IP/...
+#   http://SERVER_IP/api/...    -> 308 https://SERVER_IP/api/...
+#   http://SERVER_IP:9009       -> 308 https://SERVER_IP/api
+#   http://SERVER_IP:9009/...   -> 308 https://SERVER_IP/...
 #   https://SERVER_IP/api/...   -> proxy to 127.0.0.1:9009/api/...
+#
+# 308 (Permanent Redirect) is used for scheme/host hops because it preserves
+# the request method and body: an API POST/PUT sent to :9009 is not degraded
+# to a GET. The bare /api path uses 301 only to normalize the trailing slash.
+#
+# Port 9009 speaks plain HTTP and redirects to HTTPS on 443. TLS is not served
+# on 9009 because nginx cannot multiplex TLS and plaintext on one port; the
+# public HTTPS entry point is https://SERVER_IP/api.
 #
 # The FastAPI application already mounts every route under /api, so the proxy
 # passes the original URI untouched.

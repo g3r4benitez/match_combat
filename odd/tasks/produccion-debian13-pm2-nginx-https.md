@@ -59,4 +59,22 @@ Documentar en el archivo README.md todo el proceso de preparación del entorno d
   - `https://127.0.0.2/api/ping` → `"pong"` vía proxy.
   - `https://127.0.0.2/docs` → respuesta del backend vía proxy.
 - Decisión de runtime: Debian 13 usa Python 3.13; se comprobó que `greenlet==3.0.3` y `pandas==2.2.2` no tienen wheels `cp313`, por lo que el bootstrap provisiona Python 3.11 con `uv`.
-- `psycopg2-binary` agregado a `requirements.txt`: sin él un virtualenv nuevo no puede abrir PostgreSQL.
+- `psycopg2-binary` agregado a `requirements.txt` y fijado en `2.9.11`: sin él un virtualenv nuevo no puede abrir PostgreSQL y el resto del archivo está pinneado exacto.
+- Rollback del instalador nginx probado en contenedor: con un certificado inválido, `nginx -t` falla, el script restaura el archivo anterior y sale con código distinto de cero.
+- Certificado con `SERVER_NAME="match-combat.local alt.local"`: el SAN usa `match-combat.local` como DNS y conserva ambos IP SAN; `openssl verify` OK.
+
+### L4 — Resultado del review nativo y correcciones
+
+Review `review-09a811107f7eaa86` sobre el candidato `866131a...`:
+- Lentes admitidos: `review-risk`, `review-readability`, `review-reliability`.
+- `review-resilience` no fue admisible: produjo un resultado, pero admission lo rechazó con `evidence_path_out_of_scope` (un literal `listen` interpretado como path). Se declaró `unachievable_lens_slot`; el review terminó en `stop` sin aprobación terminal. No se inventó un PASS.
+- Hallazgos accionables aplicados como follow-up:
+  - Instalador nginx: renderiza, valida con `nginx -t` y hace rollback del archivo anterior si la validación o el reload fallan. `SKIP_RELOAD=1` ahora significa "instalar y validar sin recargar", no "dry run".
+  - Header del template corregido de 301 a 308, con la razón de preservar método/cuerpo para POST/PUT.
+  - `SERVER_NAME` multi-nombre: el certificado usa el primer nombre para CN/DNS SAN.
+  - Virtualenv existente: se verifica la versión de Python y se recrea si no coincide con `PYTHON_VERSION` (evita reutilizar un venv 3.13 con wheels incompatibles).
+  - `START_APP=1` se ignora si `.env` acaba de crearse o contiene `CHANGE_ME_`.
+  - Certificados: aviso si el certificado existente no cubre el `SERVER_IP`; recordatorio de `systemctl reload nginx`.
+  - README: `pm2 reload` documentado como reinicio del único worker, no como cero downtime.
+  - `psycopg2-binary` fijado en `2.9.11`.
+- Limitación aceptada y documentada: `https://IP:9009` no se sirve porque nginx no multiplexa TLS y texto plano en el mismo puerto. TLS se termina en 443; el 9009 es HTTP→HTTPS y preserva método con 308.

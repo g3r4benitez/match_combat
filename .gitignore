@@ -22,6 +22,10 @@ __pycache__
 PRODUCTION.MD
 sql_app.db
 
+# SQLite database and backups
+data/
+backups/
+
 # Terraform
 *.tfstate
 *.tfstate.backup

@@ -6,8 +6,7 @@ criterios como el sexo, el peso y la experiencia, para seleccionar las mejores
 opciones para cada competidor, crear los matches y sacar de las opciones a los
 competidores que ya tienen pelea armada.
 
-**Stack:** FastAPI · SQLModel (SQLAlchemy) · PostgreSQL / SQLite · Docker ·
-PM2 · nginx
+**Stack:** FastAPI · SQLModel (SQLAlchemy) · SQLite · Docker · PM2 · nginx
 
 ---
 
@@ -25,7 +24,7 @@ cd /opt/match_combat
 # 2. Instalar todo (nginx, PM2, Python 3.11, certificados, sitio nginx)
 sudo env SERVER_IP=192.168.1.46 ./scripts/setup-production.sh
 
-# 3. Editar variables de producción (DB, JWT, admin)
+# 3. Editar variables de producción (JWT, admin)
 nano .env
 
 # 4. Arrancar la API con PM2
@@ -54,7 +53,7 @@ diaria y la resolución de problemas.
 ## Requirements
 
 - Python 3.11+ (la instalación de producción provisiona 3.11 automáticamente)
-- PostgreSQL 14+ (o SQLite para desarrollo)
+- SQLite 3.35+ (incluido con Python 3.11; no requiere servidor)
 - Node.js + PM2 (solo producción)
 - nginx (solo producción)
 
@@ -209,20 +208,19 @@ Variables mínimas a cambiar:
 
 | Variable | Ejemplo | Nota |
 |---|---|---|
-| `DB_USER` | `match_user` | Usuario PostgreSQL |
-| `DB_PASSWORD` | contraseña larga | **Cambiar** |
-| `DB_NAME` | `match_combat` | Base de datos |
-| `DB_HOST` | `127.0.0.1` | Host de PostgreSQL |
-| `DB_PORT` | `5432` | Puerto |
+| `DB_URL` | `sqlite:///data/match_combat.db` | Ruta del archivo SQLite |
+| `SQL_ECHO` | `False` | Loguear cada consulta SQL |
 | `JWT_SECRET_KEY` | cadena aleatoria larga | **Cambiar** |
 | `ADMIN_PASSWORD` | contraseña segura | **Cambiar** |
 | `ADMIN_EMAIL` | `admin@dominio` | Correo del admin inicial |
 | `IS_DEBUG` | `False` | En producción siempre `False` |
 
-> **Importante:** `app/core/config.py` construye la URL de conexión desde
-> `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT` y `DB_NAME`. La variable
-> `DB_URL` del `.env` **no se usa** en el código actual; se mantiene solo por
-> compatibilidad con otras herramientas.
+> **Importante:** `app/core/config.py` lee `DB_URL` directamente. Si no se
+> define, usa `sqlite:///data/match_combat.db`. Las rutas relativas se
+> resuelven desde el directorio de trabajo del proceso; PM2 lo fija en la raíz
+> del proyecto (`cwd: __dirname`). Para guardar la base fuera del proyecto usa
+> una ruta absoluta, por ejemplo
+> `sqlite:////var/lib/match_combat/match_combat.db`.
 
 El archivo `.env` se lee desde el directorio de trabajo del proceso. PM2 fija
 `cwd: __dirname` en `ecosystem.config.js`, por eso debe vivir en la raíz del
@@ -230,17 +228,23 @@ proyecto.
 
 ### 3. Base de datos
 
-El script **no instala PostgreSQL**. Puedes usar un servidor existente
-(incluido Supabase) o instalarlo localmente:
+La aplicación usa **SQLite**: no hay servidor que instalar ni servicio que
+administrar. El archivo se crea solo en la ruta de `DB_URL` (por defecto
+`data/match_combat.db`) y el directorio se crea automáticamente al arrancar.
 
 ```bash
-sudo apt install -y postgresql
-sudo -u postgres psql -c "CREATE USER match_user WITH PASSWORD 'CAMBIA_ESTO';"
-sudo -u postgres psql -c "CREATE DATABASE match_combat OWNER match_user;"
+# Opcional: verificar la ruta configurada
+grep '^DB_URL=' .env
 ```
 
-Luego ajusta `DB_*` en `.env`. Las migraciones de Alembic se ejecutan
-automáticamente al arrancar la aplicación (`app/core/database.py:init_db()`).
+Las migraciones de Alembic se ejecutan automáticamente al arrancar la
+aplicación (`app/core/database.py:init_db()`). El engine habilita
+`foreign_keys`, `journal_mode=WAL`, `synchronous=NORMAL` y `busy_timeout` para
+soportar lecturas concurrentes sin bloquear las escrituras.
+
+> **Importante:** mantén `instances: 1` y `exec_mode: "fork"` en
+> `ecosystem.config.js`. SQLite no soporta múltiples procesos escribiendo de
+> forma segura sobre el mismo archivo.
 
 ### 4. Certificados TLS
 
@@ -459,12 +463,12 @@ Logs:
 |---|---|---|
 | `502 Bad Gateway` | La API no está corriendo | `pm2 status`, `pm2 logs match-combat` |
 | `502` y el log dice `connection refused` | uvicorn no escucha en `127.0.0.1:9009` | Revisa `ecosystem.config.js` y reinicia PM2 |
-| `pm2 start` falla por módulo `psycopg2` | Dependencia no instalada | `.venv/bin/pip install -r requirements.txt` |
 | nginx no recarga: `cannot assign requested address` | `SERVER_IP` ya no existe en el servidor | Reejecuta `install-nginx-config.sh` con la IP correcta |
 | nginx no arranca: `address already in use` en 9009 | uvicorn está en `0.0.0.0:9009` | Usa `ecosystem.config.js` (loopback) y `pm2 delete` el proceso viejo |
 | Advertencia de certificado en el navegador | La CA local no está instalada en el cliente | Importa `ca.crt` (ver sección 4) |
 | `pip install` falla compilando `greenlet`/`pandas` | Se usó Python 3.13 | Reejecuta `setup-production.sh`; debe crear `.venv` con 3.11 |
-| `could not connect to server` (PostgreSQL) | DB mal configurada o apagada | Revisa `DB_*` en `.env` y `systemctl status postgresql` |
+| `database is locked` | Escritura concurrente o base en NFS | Mantén un solo proceso PM2 y el archivo en disco local |
+| `unable to open database file` | Directorio de `DB_URL` sin permisos | Crea el directorio y dale permisos al usuario de PM2 |
 | PM2 no arranca tras reiniciar | Falta `pm2 save` o `pm2 startup` | `pm2 save` y `pm2 startup systemd -u "$USER" --hp "$HOME"` |
 | `.env` no se lee | PM2 arrancó desde otro `cwd` | Usa `ecosystem.config.js` (fija `cwd`) |
 
@@ -484,17 +488,39 @@ Logs:
 
 ## Backup y restore de la base de datos
 
-Backup:
+Backup (usa la API de backup de SQLite, segura con WAL activo):
 
 ```bash
-pg_dump -h 127.0.0.1 -p 5432 -U match_user match_combat > backup_match_combat_$(date +%F).sql
+python3 scripts/backup_db.py
+```
+
+El script escribe en `backups/match_combat_AAAAMMDD_HHMMSS.db` y conserva los
+últimos 7 archivos. Opciones útiles:
+
+```bash
+python3 scripts/backup_db.py \
+  --source data/match_combat.db \
+  --output-dir /var/backups/match_combat \
+  --keep 14
+```
+
+Programarlo con cron (por ejemplo, cada día a las 03:00):
+
+```cron
+0 3 * * * cd /opt/match_combat && .venv/bin/python scripts/backup_db.py --output-dir /var/backups/match_combat --keep 14
 ```
 
 Restore:
 
 ```bash
-psql -h 127.0.0.1 -p 5432 -U match_user -d match_combat -f backup_match_combat_2026-11-06.sql
+pm2 stop match-combat
+cp backups/match_combat_2026-11-06_030000.db data/match_combat.db
+rm -f data/match_combat.db-wal data/match_combat.db-shm
+pm2 start match-combat
 ```
+
+> Restaura siempre con la aplicación detenida y elimina los archivos `-wal` y
+> `-shm` de la base anterior para evitar mezclar estados.
 
 ---
 

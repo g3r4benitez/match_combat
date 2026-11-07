@@ -11,22 +11,18 @@ API_PREFIX = ""
 # Env vars
 IS_DEBUG: bool = _config("IS_DEBUG", cast=bool, default=False)
 
-
-DB_USER: str = _config("DB_USER", cast=str, default="match_user")
-DB_PASSWORD: str = _config("DB_PASSWORD", cast=str, default="match_password")
-DB_NAME: str = _config("DB_NAME", cast=str, default="match_combat")
-DB_HOST: str = _config("DB_HOST", cast=str, default="localhost")
-DB_PORT: str = _config("DB_PORT", cast=str, default="5432")
+# Database
+# SQLite is the default engine. DB_URL can point to another file or an
+# absolute path, e.g. sqlite:////var/lib/match_combat/match_combat.db
+DB_URL: str = _config(
+    "DB_URL",
+    cast=str,
+    default="sqlite:///data/match_combat.db",
+)
+SQL_ECHO: bool = _config("SQL_ECHO", cast=bool, default=False)
 
 CHANNELS: str = "sms,email,push"
-NOMBRE_EVENTO: str = _config("NOMBRE_EVENTO", cast=str, default="Match Combat")    
-
-def get_database_url():
-    """Generate the database url from the environment."""
-    return f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
-#DB_URL: str = _config("DB_URL", cast=str, default=get_database_url())
-DB_URL: str = get_database_url()
+NOMBRE_EVENTO: str = _config("NOMBRE_EVENTO", cast=str, default="Match Combat")
 
 # JWT
 JWT_SECRET_KEY: str = _config("JWT_SECRET_KEY", cast=str, default="change-this-secret-key-in-production")

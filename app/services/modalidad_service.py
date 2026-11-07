@@ -1,8 +1,7 @@
 from sqlmodel import Session, select
-from typing import List
-from app.models.competidor import Modalidad
-from app.core.database import engine
+
 from app.entities.modalidad_entities import ModalidadResponse
+from app.models.competidor import Modalidad
 
 
 class ModalidadService:
@@ -18,13 +17,7 @@ class ModalidadService:
         self.session.refresh(modalidad)
         return modalidad
 
-    def get_modalidades(self) -> List[ModalidadResponse]:
+    def get_modalidades(self) -> list[ModalidadResponse]:
         statement = select(Modalidad)
         modalidades = self.session.exec(statement).all()
-        #
         return [ModalidadResponse.model_validate(m) for m in modalidades]
-
-
-
-session = Session(engine)
-modalidad_service = ModalidadService(session)

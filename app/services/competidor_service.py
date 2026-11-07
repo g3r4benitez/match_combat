@@ -1,17 +1,14 @@
 import csv
 import io
 
+from fastapi import HTTPException
 from fastapi.responses import StreamingResponse
 from sqlmodel import Session, select
 
-from fastapi import HTTPException
-
 from app.core.logger import logger
+from app.models.competidor import Competidor, Modalidad
 from app.models.criterios import CriteriosDTO
-from app.models.competidor import Competidor, Match, Modalidad, Sexo
 from app.models.evento import Evento
-from app.core.database import engine
-
 
 
 def export_all_competitors_to_csv(session: Session):
@@ -133,7 +130,3 @@ class CompetidorService:
             raise HTTPException(status_code=500, detail=f"No se pudo eliminar el match por que: '{e}'")
 
         return {"detail": "Competidor eliminado exitosamente"}
-
-
-session = Session(engine)
-competidor_service = CompetidorService(session)

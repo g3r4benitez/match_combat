@@ -1,14 +1,46 @@
 from pathlib import Path
 
+from sqlalchemy import event
+from sqlalchemy.engine import make_url
 from sqlmodel import Session, create_engine, select
 
-from app.core.config import DB_URL
+from app.core.config import DB_URL, SQL_ECHO
 from app.core.logger import logger
 from app.models.competidor import Sexo
 from app.models.evento import Evento
 from app.models.user import User
 
-engine = create_engine(DB_URL, echo=True)
+
+def create_db_engine(url: str):
+    """Build the SQLAlchemy engine, enabling SQLite concurrency settings."""
+    parsed_url = make_url(url)
+
+    if parsed_url.get_backend_name() != "sqlite":
+        return create_engine(url, echo=SQL_ECHO)
+
+    database = parsed_url.database
+    if database and database != ":memory:":
+        Path(database).expanduser().parent.mkdir(parents=True, exist_ok=True)
+
+    sqlite_engine = create_engine(
+        url,
+        echo=SQL_ECHO,
+        connect_args={"timeout": 30, "check_same_thread": False},
+    )
+
+    @event.listens_for(sqlite_engine, "connect")
+    def _set_sqlite_pragmas(dbapi_connection, _connection_record):
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.execute("PRAGMA journal_mode=WAL")
+        cursor.execute("PRAGMA synchronous=NORMAL")
+        cursor.execute("PRAGMA busy_timeout=30000")
+        cursor.close()
+
+    return sqlite_engine
+
+
+engine = create_db_engine(DB_URL)
 
 def init_db():
     print("Executing init db")
